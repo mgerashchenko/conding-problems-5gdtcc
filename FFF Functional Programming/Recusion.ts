@@ -24,3 +24,18 @@ function makeTree(array, parent){
 console.log( JSON.stringify(makeTree(species, null),null, 2) );
 
 })();
+
+// {
+//   "animal": {
+//     "mammal": {
+//       "cats": {
+//         "persian": {},
+//         "siamis": {}
+//       },
+//       "dogs": {
+//         "labrador": {},
+//         "chihuahua": {}
+//       }
+//     }
+//   }
+// }
