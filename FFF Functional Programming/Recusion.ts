@@ -13,15 +13,15 @@ console.clear();
   ];
 
   function makeTree(parent) {
-      let root = {};
-        
-      species
-        .filter( el => el.parent == parent)
-        .forEach( el => {
-            root[el.class] = makeTree(el.class);
-        });
+    let root = {};
 
-      return root;
+    species
+      .filter(el => el.parent == parent)
+      .forEach(el => {
+        root[el.class] = makeTree(el.class);
+      });
+
+    return root;
   }
 
   console.log(JSON.stringify(makeTree(null), null, 2));

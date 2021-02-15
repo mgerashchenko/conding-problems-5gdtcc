@@ -16,10 +16,8 @@ console.clear();
     { name: "d3", power: "fire" },
     { name: "d4", power: "water" }
   ];
-
-  // const hasElement = (powerName, el) => powerName === el.power
-  const hasElement = powerName => el => powerName === el.power;
+  const hasElement = power => el => el.power === power;
 
   // console.log(dragons.filter( el => hasElement('light', el) ))
-  console.log(dragons.filter(hasElement("light")));
+  console.log(dragons.filter(hasElement("light")).map(o => o.name));
 })();
