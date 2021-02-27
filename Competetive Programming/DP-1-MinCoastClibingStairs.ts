@@ -5,17 +5,15 @@
  * @return {number}
  */
 var minCostClimbingStairs = function(cost) {
-  let dp = [];
-  let max = cost.length - 1;
-
+  const dp = [];
   dp[0] = cost[0];
   dp[1] = cost[1];
 
-  // DP Store 2 resuts every step
   for (let i = 2; i < cost.length; i++) {
-    dp[i] = Math.min(dp[i - 1], dp[i - 2]) + cost[i];
+    // Save 2 optimized options every step
+    dp[i] = cost[i] + Math.min(dp[i - 2], dp[i - 1]);
   }
 
-  // Pick up the best at the end
-  return Math.min(dp[max - 1], dp[max]);
+  // Pick up the best of 2;
+  return Math.min(dp[cost.length - 2], dp[cost.length - 1]);
 };
