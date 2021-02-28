@@ -34,6 +34,5 @@ var minPathSum = function(grid) {
   }
 
   // console.log(JSON.stringify(dp, null, 2));
-
   return dp[grid.length - 1][grid[0].length - 1];
 };

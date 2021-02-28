@@ -7,28 +7,25 @@
  * @return {number}
  */
 var uniquePaths = function(m, n) {
-  // m - number of rows
-  // n - lenght of rows
-  const dp = [[]];
+  const dp = [];
 
-  // Set all first row and first el of every row as 1,
-  // cos there is only one path to it
-  // 1 1 1
-  // 1
-
-  // Set all el of first row as 1
-  for (let i = 0; i < n; i++) {
-    dp[0][i] = 1;
+  // cols, there is only 1 path
+  for (let i = 0; i < m; i++) {
+    dp.push([1]);
   }
 
+  // rows there is only 1 path
+  for (let i = 0; i < n; i++) {
+    dp[0].push(1);
+  }
+
+  // calculate the rest
   for (let j = 1; j < m; j++) {
-    // set all first el of the row as 1
-    // doint here, not separatly haha
-    dp.push([1]);
     for (let i = 1; i < n; i++) {
       dp[j][i] = dp[j - 1][i] + dp[j][i - 1];
     }
   }
 
+  // console.log(JSON.stringify(dp, null, 2));
   return dp[m - 1][n - 1];
 };
