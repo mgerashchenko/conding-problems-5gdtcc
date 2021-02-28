@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/min-cost-climbing-stairs/
 
+// v.2
+
 /**
  * @param {number[]} cost
  * @return {number}

@@ -5,22 +5,35 @@
  * @return {number}
  */
 var minPathSum = function(grid) {
-  // Prepair the DP
-  const dp = grid.map(el => []);
+  const dp = [];
+
+  // init the array
+  for (let i = 0; i < grid.length; i++) {
+    dp.push([]);
+  }
+
+  // init first value
   dp[0][0] = grid[0][0];
 
-  for (let y = 0; y < grid.length; y++) {
-    for (let x = 0; x < grid[0].length; x++) {
-      // safe start, ignore 0,0 case
-      if (x == 0 && y == 0) continue;
+  // SEPARATE CONER CASES
 
-      // 0 is as undefined don't use type conversions
-      // use type number
-      let top = y - 1 > -1 ? dp[y - 1][x] : Infinity;
-      let left = x - 1 > -1 ? dp[y][x - 1] : Infinity;
+  // init first row
+  for (let i = 1; i < grid.length; i++) {
+    dp[i][0] = grid[i][0] + dp[i - 1][0];
+  }
 
-      dp[y][x] = grid[y][x] + Math.min(top, left);
+  // init first col
+  for (let i = 1; i < grid[0].length; i++) {
+    dp[0][i] = grid[0][i] + dp[0][i - 1];
+  }
+
+  for (let j = 1; j < grid.length; j++) {
+    for (let i = 1; i < grid[0].length; i++) {
+      dp[j][i] = grid[j][i] + Math.min(dp[j][i - 1], dp[j - 1][i]);
     }
   }
-  return dp[dp.length - 1][dp[0].length - 1];
+
+  // console.log(JSON.stringify(dp, null, 2));
+
+  return dp[grid.length - 1][grid[0].length - 1];
 };
