@@ -36,28 +36,27 @@ console.clear();
 
     return root;
   }
-
   let array = [1, 7, 0, 7, -8, null, null];
   console.log(array);
-
   const tree = arrayToTree(array);
   console.log("tree", tree);
 
-  let sumBFS = (function BFS(root) {
-    const queue = [root];
+  // DFS
+  let sumDFS = (function DFS(root) {
+    const stack = [root];
     let sum = 0;
 
-    while (queue.length) {
-      let el = queue.shift();
+    while (stack.length) {
+      let el = stack.pop();
       if (el.val != null) {
         sum += el.val;
       }
 
-      el.left && queue.push(el.left);
-      el.right && queue.push(el.right);
+      el.right && stack.push(el.right);
+      el.left && stack.push(el.left);
     }
 
     return sum;
   })(tree);
-  console.log("BFS sum", sumBFS);
+  console.log("DFS sum", sumDFS);
 })();
