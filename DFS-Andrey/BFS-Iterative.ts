@@ -2,9 +2,9 @@ console.clear();
 
 // Create a tree from array
 class Node {
-  val = Number;
-  left = Node;
-  right = Node;
+  val: Number;
+  left: Node;
+  right: Node;
 
   constructor(val) {
     this.val = val;
@@ -12,12 +12,12 @@ class Node {
 }
 
 function arrayToTree(array) {
-  const root = new Node();
+  const root = new Node(null);
   if (!array || !array.length) return root;
 
   root.val = array[0];
 
-  (function fillTheTree(node, i) {
+  (function fillTheTree(node: Node, i) {
     if (!node) return;
 
     let leftValue = array[i * 2 + 1];
