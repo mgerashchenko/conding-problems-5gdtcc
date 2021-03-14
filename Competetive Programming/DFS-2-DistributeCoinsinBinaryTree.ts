@@ -7,7 +7,7 @@
 
 // First of it is DFS
 // Need to understand the type preOrder, inOrder, postOrder
-// It is postOrder because we need to calculte after the recursion(DFS call)
+// It is postOrder because we need to know that result on both children before doint calculatoins 
 // Here are 3 parts of a calculation.
 // The first problem is to count the value of the leaf node.val - 1
 // Then need to count the children values, Math.abs(left) + Math.abs(right)
