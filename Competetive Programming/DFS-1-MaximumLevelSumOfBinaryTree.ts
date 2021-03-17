@@ -39,44 +39,40 @@ var maxLevelSum = function(root) {
  * @return {number}
  */
 var maxLevelSum = function(root) {
-  // DFS
+  const levels = [-Infinity];
+  (function DFS(node, level) {
+    if (!node) return;
+    if (levels.length === level) levels.push(0);
 
-  var maxLevelSum = function(root) {
-    const levels = [-Infinity];
+    const { left, right, val } = node;
+    levels[level] += val;
+
+    level++;
+    DFS(left, level);
+    DFS(right, level);
+  })(root, 1);
+
+  const max = Math.max(...levels);
+  return levels.indexOf(max);
+};
+
+// object
+//return Object.keys(levels).reduce( (a,b) => levels[a] > levels[b] ? a : b)[0];
+
+var maxLevelSum = function(root) {
+    const levels = [];
     (function DFS(node, level) {
       if (!node) return;
+      if (levels.length === level) levels.push(0);
 
-      if (levels.length === level) {
-        levels.push(0);
-      }
+      const { left, right, val } = node;
+      levels[level] += val;
 
-      levels[level] += node.val;
-
-      DFS(node.left, level + 1);
-      DFS(node.right, level + 1);
-    })(root, 1);
-
-    const max = Math.max(...levels);
-    return levels.indexOf(max);
-
-    // object
-    //return Object.keys(levels).reduce( (a,b) => levels[a] > levels[b] ? a : b)[0];
-
-    var maxLevelSum = function(root) {
-    const levels = [];
-    (function DFS(node, level){
-        if(!node) return;
-        if(levels.length === level) levels.push(0);
-        
-        const {left, right, val} = node;
-        levels[level] += val;
-        
-        level++;
-        DFS(left, level);
-        DFS(right, level);
-    })(root, 0)
+      level++;
+      DFS(left, level);
+      DFS(right, level);
+    })(root, 0);
 
     let max = Math.max(...levels);
-    return levels.indexOf(max)+1;
-  };
+    return levels.indexOf(max) + 1;
 };
