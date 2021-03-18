@@ -6,32 +6,27 @@
  * @return {number}
  */
 var maxLevelSum = function(root) {
+  const queue = [root];
+  const levels = [0];
+  let levelCount = queue.length;
+
   // BFS
-  if (root == null) return 0;
-
-  let level = 0;
-  let minLevel = 0;
-  let maxSum = -Infinity;
-  let queue = [root];
-
   while (queue.length) {
-    let length = queue.length;
-    level++;
-    let sum = 0;
+    if (levelCount === 0) {
+      levels.push(0);
+      levelCount = queue.length;
+    }
 
-    for (let i = 0; i < length; i++) {
-      let node = queue.shift();
-      sum += node.val;
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-    if (sum > maxSum) {
-      minLevel = level;
-      maxSum = sum;
-    }
+    let { val, left, right } = queue.shift();
+    levels[levels.length - 1] += val;
+
+    left && queue.push(left);
+    right && queue.push(right);
+    levelCount--;
   }
 
-  return minLevel;
+  const max = Math.max(...levels);
+  return levels.indexOf(max) + 1;
 };
 
 /**
@@ -60,19 +55,19 @@ var maxLevelSum = function(root) {
 //return Object.keys(levels).reduce( (a,b) => levels[a] > levels[b] ? a : b)[0];
 
 var maxLevelSum = function(root) {
-    const levels = [];
-    (function DFS(node, level) {
-      if (!node) return;
-      if (levels.length === level) levels.push(0);
+  const levels = [];
+  (function DFS(node, level) {
+    if (!node) return;
+    if (levels.length === level) levels.push(0);
 
-      const { left, right, val } = node;
-      levels[level] += val;
+    const { left, right, val } = node;
+    levels[level] += val;
 
-      level++;
-      DFS(left, level);
-      DFS(right, level);
-    })(root, 0);
+    level++;
+    DFS(left, level);
+    DFS(right, level);
+  })(root, 0);
 
-    let max = Math.max(...levels);
-    return levels.indexOf(max) + 1;
+  let max = Math.max(...levels);
+  return levels.indexOf(max) + 1;
 };
