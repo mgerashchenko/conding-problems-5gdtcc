@@ -14,19 +14,19 @@
  * @return {number}
  */
 var maxAncestorDiff = function(root) {
-    let maxValue = -Infinity;
+  let maxValue = -Infinity;
 
-    (function DFS(node, max, min){
-        if(!node){
-            maxValue = Math.max(maxValue, max-min);
-            return;
-        }
-        let {val, left, right} = node;
-        let newMax = Math.max(max, val);
-        let newMin = Math.min(min, val);
-        DFS(left, newMax, newMin);
-        DFS(right, newMax, newMin);
-    })(root, -Infinity, +Infinity);
+  (function DFS(node, max, min) {
+    if (!node) {
+      maxValue = Math.max(maxValue, max - min);
+      return;
+    }
+    let { val, left, right } = node;
+    let newMax = Math.max(max, val);
+    let newMin = Math.min(min, val);
+    DFS(left, newMax, newMin);
+    DFS(right, newMax, newMin);
+  })(root, -Infinity, +Infinity);
 
-    return maxValue;
+  return maxValue;
 };
