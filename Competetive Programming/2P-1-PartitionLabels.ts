@@ -23,10 +23,9 @@ var partitionLabels = function(S) {
         
         // add 1 to index to get length
         res.push(i - last + 1);
-        // count from 0 index
+        // count as from 0 index
         last = i + 1;
     }
 
     return res;
 };
-
