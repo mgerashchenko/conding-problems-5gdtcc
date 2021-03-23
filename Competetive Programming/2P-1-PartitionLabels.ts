@@ -8,24 +8,24 @@
 var partitionLabels = function(S) {
     const res = [];
     const map = new Map();
+    const length = S.length;
     
-    // Map max indexs
-    for(let i=0;i<S.length;i++) {
+    // Hash max indexes
+    for(let i=0;i<length; i++){
         map.set(S[i], i);
     }
 
-    let max = 0;
-    let last = 0;
-    for(let i=0;i<S.length;i++) {
-        let cur = S[i];        
+    let max=0, last=0;
+    for(let i=0; i<length; i++){
+        let cur = S[i];
         max = Math.max(max, map.get(cur));
-        if(i<max) continue;
-        
-        // add 1 to index to get length
-        res.push(i - last + 1);
-        // count as from 0 index
-        last = i + 1;
-    }
 
+        if(i===max){
+           res.push(i-last+1);
+           last = i + 1;
+        }
+    }
+    
     return res;
 };
+
