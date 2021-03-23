@@ -6,26 +6,31 @@
  * @return {number[]}
  */
 var partitionLabels = function(S) {
-  const partions = [];
+    const partions = [];
+    const maxIndexs = {};
+    
 
-  const { length } = S;
-  let max = 0;
-  let prevMaxIndex = 0;
+    // Map max indexs
+    for(let i=0;i<S.length;i++) {
+        maxIndexs[S[i]] = i;
+    }
+    
+    let maxIndex = maxIndexs[S[0]];
+    let lastIndex = 0;
+    for(let i=0;i<S.length;i++) {
+        let char = S[i];
+        if(i===maxIndex) {
+            // add 1 for length
+            partions.push(i - lastIndex + 1);
+            lastIndex = i + 1;
+            maxIndex = maxIndexs[S[i+1]];
+            continue;
+        }
 
-  for (let i = 0; i < length; i++) {
-    let cur = S[i];
-
-    for (let j = 0; j < length; j++) {
-      if (S[j] === cur && j > max) {
-        max = j;
-      }
+        if(maxIndexs[char] > maxIndex) {
+            maxIndex = maxIndexs[char];
+        }
     }
 
-    if (i == max) {
-      let prev = partions.reduce((prev, cur) => prev + cur, 0);
-      partions.push(max + 1 - prev);
-    }
-  }
-
-  return partions;
+    return partions;
 };
