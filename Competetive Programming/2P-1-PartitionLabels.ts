@@ -9,7 +9,6 @@ var partitionLabels = function(S) {
     const partions = [];
     const maxIndexs = {};
     
-
     // Map max indexs
     for(let i=0;i<S.length;i++) {
         maxIndexs[S[i]] = i;
@@ -20,8 +19,9 @@ var partitionLabels = function(S) {
     for(let i=0;i<S.length;i++) {
         let char = S[i];
         if(i===maxIndex) {
-            // add 1 for length
+            // add 1 to index to get length
             partions.push(i - lastIndex + 1);
+            // count from 0 index
             lastIndex = i + 1;
             maxIndex = maxIndexs[S[i+1]];
             continue;
@@ -34,3 +34,4 @@ var partitionLabels = function(S) {
 
     return partions;
 };
+
