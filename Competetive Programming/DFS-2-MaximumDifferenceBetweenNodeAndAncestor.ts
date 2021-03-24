@@ -1,6 +1,19 @@
 // https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/
 // 1026. Maximum Difference Between Node and Ancestor
 
+// To find the maximum diffrence in the Tree
+// First of use DFS, recursive works here
+// We use preorder traversal because we caclucate the value before recurtion
+// DFS should remember about last min and last max valu
+// Final compuration happends when we reach the last node
+// Every leaf node try to udpate the max value.
+
+
+
+
+
+
+
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -26,7 +39,7 @@ var maxAncestorDiff = function(root) {
     let newMin = Math.min(min, val);
     DFS(left, newMax, newMin);
     DFS(right, newMax, newMin);
-  })(root, -Infinity, +Infinity);
+  })(root, -Infinity, +Infinity); // O()
 
   return maxValue;
 };
