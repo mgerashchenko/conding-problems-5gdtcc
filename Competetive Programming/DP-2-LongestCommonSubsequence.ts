@@ -20,30 +20,31 @@ var longestCommonSubsequence = function(text1, text2) {
   //     e 0 0 1 1 1
   //     f 0 0 1 1 1
 
-  let map = [[0]];
+  let dp = [[0]];
   // fill the rows with 0s
   for (let j = 0; j < text1.length; j++) {
-    map[0].push(0);
+    dp[0].push(0);
   }
 
   // fill the columns 0s
   for (let i = 0; i < text2.length; i++) {
-    map.push([0]);
+    dp.push([0]);
   }
 
   for (let j = 1; j <= text2.length; j++) {
     for (let i = 1; i <= text1.length; i++) {
-      map[j][i] =
+      dp[j][i] =
         text1[i - 1] === text2[j - 1]
           ? // if match take the diagonal, cos it should include correct order
             // to avoid the situation when char repeats several time in one but
             // is only one in second
-            (map[j][i] = map[j - 1][i - 1] + 1)
+            (dp[j][i] = dp[j - 1][i - 1] + 1)
           : // if don't take max of previous top or left
             // that means we choose the best path, to skip symbol from on string
             // or another
-            Math.max(map[j - 1][i], map[j][i - 1]);
+            Math.max(dp[j - 1][i], dp[j][i - 1]);
     }
   }
-  return map[map.length - 1][map[0].length - 1];
+
+  return dp[text2.length][text1.length];
 };
