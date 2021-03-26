@@ -34,6 +34,6 @@ var longestCommonSubsequence = function(text1, text2) {
             Math.max(top, left);
     }
   } // O(n^2)
-  // Last el in the last row is always the max valu
+  // Last el in the last row is always the max value
   return dp[text2.length - 1][text1.length - 1]; // O(n^2)
 };
