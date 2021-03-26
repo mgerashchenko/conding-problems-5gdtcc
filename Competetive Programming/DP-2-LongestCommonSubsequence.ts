@@ -8,43 +8,32 @@
  * @return {number}
  */
 var longestCommonSubsequence = function(text1, text2) {
-  //       0 a b c d e
-  //     0 0 0 0 0 0 0
-  //     a 0 1 1 1 1 1
-  //     c 0 1 1 2 2 2
-  //     e 0 1 1 2 2 3
+  //   0 a d c d
+  // 0 0 0 0 0 0
+  // d 0 0 1 1 1
+  // e 0 0 1 1 1
+  // f 0 0 1 1 1
 
-  //       0 a d c d
-  //     0 0 0 0 0 0
-  //     d 0 0 1 1 1
-  //     e 0 0 1 1 1
-  //     f 0 0 1 1 1
-
-  let dp = [[0]];
-  // fill the rows with 0s
-  for (let j = 0; j < text1.length; j++) {
-    dp[0].push(0);
-  }
-
-  // fill the columns 0s
-  for (let i = 0; i < text2.length; i++) {
-    dp.push([0]);
-  }
-
-  for (let j = 1; j <= text2.length; j++) {
-    for (let i = 1; i <= text1.length; i++) {
+  const dp = []; // O(1)
+  for (let j = 0; j < text2.length; j++) {
+    // O(n)
+    dp.push([]);
+    for (let i = 0; i < text1.length; i++) {
+      // O(n)
+      // check top the boundary
+      let top = j > 0 ? dp[j - 1][i] : 0;
+      // check left the boundary
+      let left = i > 0 ? dp[j][i - 1] : 0;
+      // check diagonal the boundary
+      let prev = j > 0 && i > 0 ? dp[j - 1][i - 1] : 0;
       dp[j][i] =
-        text1[i - 1] === text2[j - 1]
-          ? // if match take the diagonal, cos it should include correct order
-            // to avoid the situation when char repeats several time in one but
-            // is only one in second
-            (dp[j][i] = dp[j - 1][i - 1] + 1)
-          : // if don't take max of previous top or left
-            // that means we choose the best path, to skip symbol from on string
-            // or another
-            Math.max(dp[j - 1][i], dp[j][i - 1]);
+        text2[j] === text1[i]
+          ? // if values are equal take the last equal value from the diagonal
+            prev + 1
+          : // if not skip the value with less matches
+            Math.max(top, left);
     }
-  }
-
-  return dp[text2.length][text1.length];
+  } // O(n^2)
+  // Last el in the last row is always the max valu
+  return dp[text2.length - 1][text1.length - 1]; // O(n^2)
 };
