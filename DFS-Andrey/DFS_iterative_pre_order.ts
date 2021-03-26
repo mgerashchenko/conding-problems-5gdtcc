@@ -41,7 +41,7 @@ console.clear();
   const tree = arrayToTree(array);
   console.log("tree", tree);
 
-  // DFS
+  // DFS PRE ORDER
   let sumDFS = (function DFS(root) {
     const stack = [root];
     let sum = 0;
