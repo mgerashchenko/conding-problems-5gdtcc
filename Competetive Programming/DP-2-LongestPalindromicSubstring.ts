@@ -20,7 +20,7 @@ var longestPalindrome = function(s) {
   }
 
   // fill the diagolan means that
-  // all single char el are polindrom
+  // all single char els are polindrom
   for (let i = 0; i < s.length; i++) {
     dp[i][i] = 1;
   }
