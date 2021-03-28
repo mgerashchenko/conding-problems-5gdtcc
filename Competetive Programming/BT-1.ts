@@ -15,25 +15,25 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-    let res = [];
+  let res = [];
 
-    (function BT(path, index) {
-        if(index === graph.length - 1) {
-            res.push([...path]);
-            return;
-        }
+  (function BT(path, index) {
+    if (index === graph.length - 1) {
+      res.push([...path]);
+      return;
+    }
 
-        for(let newIndex of graph[index]) {
-            path.push(newIndex)
-            BT(path, newIndex);
-            // back tracking here, by removing 
-            // visted node because of the clouser
-            path.pop();
-            
-            // or can do
-            // BT([...path, newIndex], newIndex);
-        }
-    })([0], 0)
+    for (let newIndex of graph[index]) {
+      path.push(newIndex);
+      BT(path, newIndex);
+      // back tracking here, by removing
+      // visted node because of the clouser
+      path.pop();
 
-    return res;
+      // or can do
+      // BT([...path, newIndex], newIndex);
+    }
+  })([0], 0);
+
+  return res;
 };
