@@ -3,18 +3,21 @@
 console.clear();
 
 (() => {
-  // Create a tree from array
   class Node {
-    val = Number;
-    left = Node;
-    right = Node;
+    val: Number;
+    left: Node;
+    right: Node;
 
     constructor(val) {
       this.val = val;
     }
   }
 
-  function arrayToTree(array) {
+  let array = [20, 15, 25, 13, 18, , 30];
+  let tree = {};
+
+  // Create a tree from array
+  (array => {
     const root = new Node(null);
     if (!array || !array.length) return root;
 
@@ -32,19 +35,20 @@ console.clear();
       node.left = left;
       node.right = right;
 
-      fillTheTree(node.left, i + 1);
-      fillTheTree(node.right, i + 2);
+      fillTheTree(node.left, i * 2 + 1);
+      fillTheTree(node.right, i * 2 + 2);
     })(root, 0);
 
-    return root;
-  }
-  let array = [1, 7, 0, 7, -8, null, null];
+    tree = root;
+  })(array);
+
+  // https://levelup.gitconnected.com/how-to-traverse-a-tree-using-javascript-c9a79826e819
   console.log(array);
-  const tree = arrayToTree(array);
   console.log("tree", tree);
 
   // DFS PRE ORDER
-  let sumDFS = (function DFS(root) {
+  (function DFS(root) {
+    const res = [];
     const stack = [root];
     let sum = 0;
 
@@ -53,12 +57,30 @@ console.clear();
       if (el.val != null) {
         sum += el.val;
       }
-
+      res.push(el.val);
       el.right && stack.push(el.right);
       el.left && stack.push(el.left);
     }
 
-    return sum;
+    console.log("DFS sum", res);
   })(tree);
-  console.log("DFS sum", sumDFS);
+
+  // DFS PRE ORDER
+  (function DFS(root: Node) {
+    const res = [];
+    const stack = [root];
+    let sum = 0;
+
+    while (stack.length) {
+      let el = stack.pop();
+      if (el.val != null) {
+        sum += el.val;
+      }
+      res.push(el.val);
+      el.right && stack.push(el.right);
+      el.left && stack.push(el.left);
+    }
+
+    console.log("DFS Preo", res);
+  })(tree);
 })();
