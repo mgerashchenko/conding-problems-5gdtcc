@@ -7,7 +7,7 @@
 //https://github.com/luliyucoordinate/Leetcode/blob/master/src/1291-Sequential-Digits/1291.java
 // Using the % for digits
 
-// SMART SOLUTI
+// SMART SOLUTION
 
 // constraints
 // 10 <= low <= high <= 10^9

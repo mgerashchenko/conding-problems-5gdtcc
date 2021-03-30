@@ -12,7 +12,6 @@
  */
 var letterCasePermutation = function(S) {
     let res = [];
-    
 
     (function BT(mutation, index){
         if(index===S.length){
