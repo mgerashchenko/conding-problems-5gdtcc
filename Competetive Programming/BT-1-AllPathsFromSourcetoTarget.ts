@@ -15,25 +15,19 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-  let res = [];
+    // Constraints
+    // 2 <= graph.length <= 15
+    // 0 <= graph[i][j] <= n
+    
+    const res = [];
+    (function BT(path, index){
+        if(index === graph.length-1){
+            res.push(path);
+        }
+        for(let el of graph[index]){
+            BT([...path, el], el);
+        }
+    })([0], 0);
 
-  (function BT(path, index) {
-    if (index === graph.length - 1) {
-      res.push([...path]);
-      return;
-    }
-
-    for (let newIndex of graph[index]) {
-      path.push(newIndex);
-      BT(path, newIndex);
-      // back tracking here, by removing
-      // visted node because of the clouser
-      path.pop();
-
-      // or can do
-      // BT([...path, newIndex], newIndex);
-    }
-  })([0], 0);
-
-  return res;
+    return res;
 };

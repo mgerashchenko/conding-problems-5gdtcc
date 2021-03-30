@@ -11,19 +11,19 @@
  * @return {string[]}
  */
 var letterCasePermutation = function(S) {
-    let res = [];
+  let res = [];
 
-    (function BT(mutation, index){
-        if(index===S.length){
-            res.push(mutation);
-            return;
-        }
+  (function BT(mutation, index) {
+    if (index === S.length) {
+      res.push(mutation);
+      return;
+    }
 
-        let char = S[index];
-        /[a-z]/.test(char) && BT(mutation+char.toUpperCase(), index+1);
-        /[A-Z]/.test(char) && BT(mutation+char.toLowerCase(), index+1);
-        BT(mutation+char, index+1);
-    })('', 0); // O(n)
-    
-    return res;
-};  // O(n)
+    let char = S[index];
+    /[a-z]/.test(char) && BT(mutation + char.toUpperCase(), index + 1);
+    /[A-Z]/.test(char) && BT(mutation + char.toLowerCase(), index + 1);
+    BT(mutation + char, index + 1);
+  })("", 0); // O(n)
+
+  return res;
+}; // O(n)
