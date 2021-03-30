@@ -15,19 +15,20 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-    // Constraints
-    // 2 <= graph.length <= 15
-    // 0 <= graph[i][j] <= n
-    
-    const res = [];
-    (function BT(path, index){
-        if(index === graph.length-1){
-            res.push(path);
-        }
-        for(let el of graph[index]){
-            BT([...path, el], el);
-        }
-    })([0], 0);
+  // Constraints
+  // 2 <= graph.length <= 15
+  // 0 <= graph[i][j] <= n
 
-    return res;
+  const res = [];
+  (function BT(path, index) {
+    if (index === graph.length - 1) {
+      res.push(path);
+    }
+    for (let el of graph[index]) {
+      // add el and go to the eleme
+      BT([...path, el], el);
+    }
+  })([0], 0);
+
+  return res;
 };
