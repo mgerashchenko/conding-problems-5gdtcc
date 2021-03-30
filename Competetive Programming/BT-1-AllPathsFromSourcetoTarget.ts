@@ -25,9 +25,10 @@ var allPathsSourceTarget = function(graph) {
       res.push(path);
     }
     for (let el of graph[index]) {
-      // add el and go to the eleme
+      // add el and go to the element
       BT([...path, el], el);
     }
+  // Start from adding the 0
   })([0], 0);
 
   return res;
