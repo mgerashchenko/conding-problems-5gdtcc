@@ -2,9 +2,9 @@ console.clear();
 
 (() => {
   class Node {
-    val=Number;
-    left=Node;
-    right=Node;
+    val = Number;
+    left = Node;
+    right = Node;
 
     constructor(val) {
       this.val = val;
@@ -49,17 +49,17 @@ console.clear();
     const res = [];
     const stack = [root];
 
-    while(stack.length){
-      let el = stack[stack.length-1];
-      if(el.right){
+    while (stack.length) {
+      let el = stack[stack.length - 1];
+      if (el.right) {
         stack.push(el.right);
         el.right = null;
       }
-      if(el.left){
+      if (el.left) {
         stack.push(el.left);
         el.left = null;
       }
-      if(el.val === stack[stack.length-1].val) {
+      if (el.val === stack[stack.length - 1].val) {
         stack.pop();
         res.push(el.val);
       }
@@ -67,5 +67,4 @@ console.clear();
 
     console.log("DFS PostOrder", res);
   })(tree);
-
 })();
