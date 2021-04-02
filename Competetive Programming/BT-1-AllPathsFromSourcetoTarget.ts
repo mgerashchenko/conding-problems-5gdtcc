@@ -19,19 +19,19 @@ var allPathsSourceTarget = function(graph) {
   // 2 <= graph.length <= 15
   // 0 <= graph[i][j] <= n
 
-    let res = [];  
-    (function BT(path, index){
-        let nodes = graph[index];
-        if(index === graph.length-1) {
-            res.push(path);
-        }
-        
-        // as last node is empty
-        // don't need to return
-        for(let el of nodes){
-            BT([...path, el], el);
-        }
-    })([0], 0);
-    
-    return res;
+  let res = [];
+  (function BT(path, index) {
+    let nodes = graph[index];
+    if (index === graph.length - 1) {
+      res.push(path);
+    }
+
+    // as last node is empty
+    // don't need to return
+    for (let el of nodes) {
+      BT([...path, el], el);
+    }
+  })([0], 0);
+
+  return res;
 };
