@@ -2,7 +2,7 @@
 // Implement strStr
 // Easy
 
-// A aive vol #0
+// A naive vol #0
 
 /**
  * @param {string} haystack
