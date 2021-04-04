@@ -1,8 +1,3 @@
-// I don't want to test qeues as well
-// I don't waht to find mistacks
-// I don't want to pass the inreview
-// I don't want TESLA
-
 class Node {
   constructor(val) {
     this.val = val;

@@ -1,5 +1,3 @@
-// I don't retur value
-
 function minSubArrayLen(arr, n) {
   if (!arr || !n) return 0;
 
@@ -24,6 +22,5 @@ function minSubArrayLen(arr, n) {
 
 // Time complexity O(n)
 // Space complexity O(1)
-
 
 minSubArrayLen([2, 3, 1, 2, 3, 4], 7); //2

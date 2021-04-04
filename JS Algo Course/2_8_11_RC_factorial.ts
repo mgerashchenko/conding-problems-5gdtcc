@@ -1,6 +1,3 @@
-// I don't remember that 1 + 0 = 1
-// I don't remember that 1 * 1 = 1
-
 // Write a function name factorial that takes integer number as input and return product of // integer and all integers bellow !n = (n*(n-1))
 
 // factorial(1) // 1

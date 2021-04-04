@@ -4,20 +4,7 @@
 
 // - The pattern:
 // split everithning in 2 arrays
-// meger arrays
-
-// I don't want to think about coner cases
-// I don't remember that Array is an Object
-// I don't remember to break or continue the loop
-// I don't remember the diffrance between = and ===
-// I don't remember about that 1+2*2=5 and (1+2)*2=6
-// I don't check last conner case, the end of the array
-// I don't think about mirrow cases as [aa] [a] [] [aba]
-// I don't remember that for(in) return i as a string !!!
-// I don't control infinit loop, in for(i=10; i > 11; i--)
-// I don't remember the diffrence between index and arr[index]
-// I don't remember that i < arr.legth is === i <= arr.length - 1
-// I don't remember that for([key, val] in {}) = val is not string val*1 to make it string
+// meger Arrays
 
 // Code simples
 // Ask for the help

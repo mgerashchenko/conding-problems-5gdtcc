@@ -66,8 +66,3 @@ stack.pop();
 stack.pop();
 stack.pop();
 console.log(stack.head && stack.head.val);
-
-// I don't want to test stack
-// I don't waht to find mistacks
-// I don't want to pass the inreview
-// I don't want TESLA

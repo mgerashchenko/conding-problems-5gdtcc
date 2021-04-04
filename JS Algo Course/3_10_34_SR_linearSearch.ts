@@ -27,12 +27,6 @@
 // Check complicate
 // Check complex
 
-// I don't return the result
-// I don't check variables names
-// I don't think about mirrow cases as [aa] [a] [] [aba]
-// I don't check recursion loops
-// I don't check length spelling
-
 // Code simples
 // Ask for the help
 // Code harder

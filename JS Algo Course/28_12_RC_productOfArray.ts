@@ -1,14 +1,3 @@
-// I don't remember that 1 + 0 === 0
-// I don't remember that 1 + 1 === 1
-
-// Can I refactor the code
-// How other people solve it?
-
-// Write the function productOfArray that retun the product of the numbers in array
-
-// productOfArray([1,2,3]) // 6
-// productOfArray([1,2,3,10]) // 60
-
 function productOfArray(arr) {
   // recursion
   if (!Array.isArray(arr)) return null;

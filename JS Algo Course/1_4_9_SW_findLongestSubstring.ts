@@ -1,16 +1,3 @@
-// "the".slice(0,2) [0,2) // the
-// slice(i, j+1);
-// slice is like map return new
-// "string".length
-// use object as counter
-// ! I rename variables and make mistake because of it
-// ! I don't return the value
-// ! I don't assign the value
-// even counter[char] === 0, case when index is 0 fit the condition
-// ! I check only simple cases
-// ! I don't look for a little bit more complicated cases
-// ! I am not curious
-
 function findLongestSubstring(str) {
   if (!str) return 0;
   let max = 0,

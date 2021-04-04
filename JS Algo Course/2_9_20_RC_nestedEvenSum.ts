@@ -36,16 +36,6 @@ var obj2 = {
 // if obj is object Object for all value call retuctions
 // return recursion
 
-// I Don't read description carefully
-// I don't check variables names
-// I don't think about mirrow cases
-// I don't remember that 1 + 0 = 1
-// I don't remember that 1 * 1 = 1
-// I don't return value
-// I don't check recursion loops
-// I don't check length spelling
-// I don't remember that .reduce((prev, cur)
-
 // Code simples
 // Ask for the help
 // Code harder

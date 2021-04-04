@@ -46,17 +46,6 @@
 // Check complicate {'',{''}} // ['','']
 // Check complex ---
 
-// I don't return the result
-// I don't check variables names
-// I don't think about mirrow cases as [aa] [a] [] [aba]
-// I don't remember that 1 + 0 = 1
-// I don't remember that 1 * 1 = 1
-// I don't check recursion loops
-// I don't check length spelling
-// I don't rememer how to use typeof
-// I don't remember to break or continue the loop
-// I don't remember that Array is Object
-
 // Code simples
 // Ask for the help
 // Code harder

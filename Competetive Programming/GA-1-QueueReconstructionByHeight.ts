@@ -20,7 +20,7 @@ var getSumAbsoluteDifferences = function(nums) {
     left += nums[i - 1] || 0;
     rigth -= nums[i];
     res[i] = nums[i] * i - left + rigth - nums[i] * (n - (i + 1));
-  } // O(n^2)
+  } // O(n)
 
   return res;
 };

@@ -1,5 +1,3 @@
-// I don't split the logic and try to do all together
-
 function isSubsequence(str1, str2) {
   if (!str1) return true;
 

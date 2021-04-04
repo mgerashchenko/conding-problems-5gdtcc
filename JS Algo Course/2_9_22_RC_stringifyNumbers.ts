@@ -48,17 +48,6 @@ let obj = {
 // Check complicate
 // Check complex
 
-// I don't check variables names
-// I don't think about mirrow cases
-// I don't remember that 1 + 0 = 1
-// I don't remember that 1 * 1 = 1
-// I don't check recursion loops
-// I don't check length spelling
-// I don't rememer how to use typeof
-// I don't remember to break or continue the loop
-// I don't remember that Array is Object
-// I don't double check when when I copy/past
-
 // Code simples
 // Ask for the help
 // Code harder

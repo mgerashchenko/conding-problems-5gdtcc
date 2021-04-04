@@ -26,14 +26,6 @@
 // Check complicate [aaa bbb] [AAA BBB]
 // Check complex ----
 
-// I don't check variables names
-// I don't think about mirrow cases as [aa] [a] [] [aba]
-// I don't remember that 1 + 0 = 1
-// I don't remember that 1 * 1 = 1
-// I don't return value
-// I don't check recursion loops
-// I don't check length spelling
-
 // Code simples
 // Ask for the help
 // Code harder

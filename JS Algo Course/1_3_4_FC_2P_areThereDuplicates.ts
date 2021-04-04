@@ -1,7 +1,3 @@
-// I don't return a value
-// I don't read description
-// I don't check conner cases
-
 function areThereDuplicates(...args) {
   // Frequensy counter
   let c = {};

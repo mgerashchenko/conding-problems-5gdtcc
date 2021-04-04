@@ -1,6 +1,3 @@
-// I rename variables in the middle of coding
-// I don't check algo before coding
-
 // tmp += tmp + x - y
 // for !!! not while
 // let i !!! not global i
