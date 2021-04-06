@@ -25,22 +25,24 @@
 // Ans 3
 
 var distributeCoins = function(root) {
-  // constraints
-  // n - root length
+  // Constraints
   // 1 <= n <= 100
-  // 0 <= Node.val <= n
-  // The sum of Node.val is n
+  // 0 <= val <= n
+  // Sum(n.val) = n
 
   let moves = 0;
-
   (function DFS(node) {
     if (!node) return 0;
-    let right = DFS(node.right);
-    let left = DFS(node.left);
-    moves += Math.abs(left) + Math.abs(right);
-    // Thas is what we signal to the outside
-    // if it is 0, it means it is self-balanced
-    return left + right + node.val - 1;
+
+    let { left, right, val } = node;
+    let l = DFS(left);
+    let r = DFS(right);
+    moves += Math.abs(l) + Math.abs(r);
+    // Don't need to count moves for the root
+    // coz childer info is enougth to predic moves
+    // when the sum of nodes values is always n
+    // But need to count the value when node has parent
+    return l + r + node.val - 1;
   })(root);
 
   return moves;
