@@ -1,8 +1,8 @@
+// A naive vol #0
+
 // https://leetcode.com/problems/implement-strstr/
 // Implement strStr
 // Easy
-
-// A naive vol #0
 
 /**
  * @param {string} haystack
