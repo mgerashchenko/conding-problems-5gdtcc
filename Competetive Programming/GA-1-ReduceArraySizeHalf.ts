@@ -1,7 +1,7 @@
 // Reduce Array Size to The Half
 // https://leetcode.com/problems/reduce-array-size-to-the-half/
 
-// THRE IS ANOTHER FASTER SOLUTI
+// THRE IS ANOTHER FASTER SOLUTION
 
 // https://codeburst.io/how-to-create-a-priority-queue-with-javascript-c56a970f29a8
 class MaxHeap {

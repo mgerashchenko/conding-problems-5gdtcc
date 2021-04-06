@@ -6,25 +6,41 @@
 // Screen shot to understand the Pattern https://youtu.be/ZhGtKbdrAhI?t=161
 
 // First of it is DFS
-// Need to understand the type preOrder, inOrder, postOrder
-// It is postOrder because we need to know that result on both children before doint calculatoins
+// You need to understand the type preOrder, inOrder, postOrder approach
+// It is postOrder because we need to know that result if both children before doing the calculatoins.
 // Here are 3 parts of a calculation.
 // The first problem is to count the value of the leaf node.val - 1
 // Then need to count the children values, Math.abs(left) + Math.abs(right)
 // That is a small graph, and it is a subproblem itself, so we need to figure out what to return to the top form.
-// Last but not least, subproblem is return left + right + node.val - 1.
+// Last but not least, subproblem is to return left + right + node.val - 1.
 // If it is 0 it means that a small subproblem is balanced.
 
+//  3
+// 0  0
+// Ans 2
+
+//  0
+// 3 0
+// Ans 3
+
 var distributeCoins = function(root) {
-  let count = 0;
+  // constraints
+  // n - root length
+  // 1 <= n <= 100
+  // 0 <= Node.val <= n
+  // The sum of Node.val is n
+
+  let moves = 0;
 
   (function DFS(node) {
     if (!node) return 0;
-    const left = DFS(node.left);
-    const right = DFS(node.right);
-    count += Math.abs(left) + Math.abs(right);
+    let right = DFS(node.right);
+    let left = DFS(node.left);
+    moves += Math.abs(left) + Math.abs(right);
+    // Thas is what we signal to the outside
+    // if it is 0, it means it is self-balanced
     return left + right + node.val - 1;
   })(root);
 
-  return count;
+  return moves;
 };
