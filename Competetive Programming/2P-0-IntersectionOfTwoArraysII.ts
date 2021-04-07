@@ -37,4 +37,4 @@ var intersect = function(nums1, nums2) {
     return res;
 };
 
-// for # write a hashMap
+// for #3 write a hashMap
