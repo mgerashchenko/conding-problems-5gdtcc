@@ -25,25 +25,25 @@
 // Ans 3
 
 var distributeCoins = function(root) {
-    // Constraints
-    // the n of coints is always equal to the n of nodes
-    // min node value is 0
-    // max node value is n
-    
-    // moves depends on the ballance of childers
-    // out ballance depends on children and root value
-    // formula for the root value is value-1
-    // formula for the node value is Math.abs(ballance) -1 or 1 is one move
-    
-    let moves = 0;
-    
-    (function DFS(node){
-        if(!node) return 0;
-        const left = DFS(node.left);
-        const right = DFS(node.right);
-        moves += Math.abs(left) + Math.abs(right);
-        return left + right + node.val - 1;
-    })(root)
-    
-    return moves;
+  // Constraints
+  // the n of coints is always equal to the n of nodes
+  // min node value is 0
+  // max node value is n
+
+  // moves depends on the ballance of childers
+  // out ballance depends on children and root value
+  // formula for the root value is value-1
+  // formula for the node value is Math.abs(ballance) -1 or 1 is one move
+
+  let moves = 0;
+
+  (function DFS(node) {
+    if (!node) return 0;
+    const left = DFS(node.left);
+    const right = DFS(node.right);
+    moves += Math.abs(left) + Math.abs(right);
+    return left + right + node.val - 1;
+  })(root);
+
+  return moves;
 };
