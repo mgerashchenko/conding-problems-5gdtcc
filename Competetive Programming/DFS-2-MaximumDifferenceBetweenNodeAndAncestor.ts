@@ -4,15 +4,9 @@
 // To find the maximum diffrence in the Tree
 // First of use DFS, recursive works here
 // We use preorder traversal because we caclucate the value before recurtion
-// DFS should remember about last min and last max valu
+// DFS should remember about last min and last max value
 // Final compuration happends when we reach the last node
 // Every leaf node try to udpate the max value.
-
-
-
-
-
-
 
 /**
  * Definition for a binary tree node.

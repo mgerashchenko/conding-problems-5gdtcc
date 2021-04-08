@@ -1,4 +1,4 @@
-// #2
+// #3
 // https://www.google.com/search?q=inorder+preorder+postorder&newwindow=1&rlz=1C5CHFA_enUS828US832&source=lnms&tbm=isch&biw=1680&bih=913#imgrc=BBNIO5_GRXSXmM
 
 // 979. Distribute Coins in Binary tree
@@ -25,25 +25,25 @@
 // Ans 3
 
 var distributeCoins = function(root) {
-  // Constraints
-  // 1 <= n <= 100
-  // 0 <= val <= n
-  // Sum(n.val) = n
-
-  let moves = 0;
-  (function DFS(node) {
-    if (!node) return 0;
-
-    let { left, right, val } = node;
-    let l = DFS(left);
-    let r = DFS(right);
-    moves += Math.abs(l) + Math.abs(r);
-    // Don't need to count moves for the root
-    // coz childer info is enougth to predic moves
-    // when the sum of nodes values is always n
-    // But need to count the value when node has parent
-    return l + r + node.val - 1;
-  })(root);
-
-  return moves;
+    // Constraints
+    // the n of coints is always equal to the n of nodes
+    // min node value is 0
+    // max node value is n
+    
+    // moves depends on the ballance of childers
+    // out ballance depends on children and root value
+    // formula for the root value is value-1
+    // formula for the node value is Math.abs(ballance) -1 or 1 is one move
+    
+    let moves = 0;
+    
+    (function DFS(node){
+        if(!node) return 0;
+        const left = DFS(node.left);
+        const right = DFS(node.right);
+        moves += Math.abs(left) + Math.abs(right);
+        return left + right + node.val - 1;
+    })(root)
+    
+    return moves;
 };
