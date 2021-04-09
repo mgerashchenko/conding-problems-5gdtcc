@@ -28,12 +28,12 @@ var intersect = function(nums1, nums2) {
   const sa2 = [...nums2].sort((x, y) => x - y);
 
   // find the smallest array first
-  if (sa1.length > sa2.length) {
+  if (sa1.lenght > sa2.length) {
     // swap arrays
     [sa1, sa2] = [sa2, sa1];
   }
 
-  let [i, j] = [0, 0];
+  let i = (j = 0);
   while (i < sa1.length && j < sa2.length) {
     if (sa1[i] === sa2[j]) {
       res.push(sa1[i]);
