@@ -1,5 +1,6 @@
-// https://leetcode.com/problems/unique-paths/
+// #2
 
+// https://leetcode.com/problems/unique-paths/
 // https://rixong.medium.com/unique-paths-algorithm-e5834962b687
 
 /**
@@ -8,25 +9,32 @@
  * @return {number}
  */
 var uniquePaths = function(m, n) {
-  const dp = [];
+  // Constraints
+  // 1 <= m.n <= 100
 
-  // cols, there is only 1 path
-  for (let i = 0; i < m; i++) {
-    dp.push([1]);
-  }
+  // Use DP matrix
+  // n - j - rows
+  // m - i - cols
+  // first row is always 1 path
+  // first coll is always 1 path
+  // other cells are sum of top and left
+  // last element is the answer
 
-  // rows there is only 1 path
-  for (let i = 0; i < n; i++) {
-    dp[0].push(1);
-  }
+  let dp = [];
 
-  // calculate the rest
-  for (let j = 1; j < m; j++) {
-    for (let i = 1; i < n; i++) {
-      dp[j][i] = dp[j - 1][i] + dp[j][i - 1];
-    }
-  }
+  for (let j = 0; j < m; j++) {
+    dp.push([]);
+    for (let i = 0; i < n; i++) {
+      if (j === 0 || i === 0) {
+        dp[j][i] = 1;
+        continue;
+      }
 
-  // console.log(JSON.stringify(dp, null, 2));
+      let top = dp[j - 1][i];
+      let left = dp[j][i - 1];
+      dp[j][i] = top + left;
+    } // O(n)
+  } // O(n^2)
+
   return dp[m - 1][n - 1];
 };

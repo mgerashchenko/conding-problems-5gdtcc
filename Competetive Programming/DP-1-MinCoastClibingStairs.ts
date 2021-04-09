@@ -1,3 +1,5 @@
+// #1
+
 // https://leetcode.com/problems/min-cost-climbing-stairs/
 
 // v.2

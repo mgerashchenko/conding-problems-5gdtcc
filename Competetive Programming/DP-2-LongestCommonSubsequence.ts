@@ -9,6 +9,8 @@
  * @param {string} text2
  * @return {number}
  */
+// #2
+
 var longestCommonSubsequence = function(text1, text2) {
   // Constraints 1<= text <=1000
   // Lower case english letters
