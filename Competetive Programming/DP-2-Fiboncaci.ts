@@ -1,29 +1,18 @@
-// #1
+// #
+// https://leetcode.com/problems/fibonacci-number/
 
-console.clear();
+var fib = function(n) {
+  // Constraints
+  // 0 <= n <= 30;
 
-//     1 2 3 4 5 6
-// fib 1,1,2,3,5,8
+  // Use dp array
+  // Where dp[i] = dp[i-2] + dp[i-1]
 
-// Recursive O(n^2)
-function fibRec(n) {
-  if (n < 3) {
-    return 1;
+  let dp = [0, 1];
+
+  for (let i = 2; i <= n; i++) {
+    dp[i] = dp[i - 2] + dp[i - 1];
   }
 
-  return fib(n - 1) + fib(n - 2);
-}
-console.log("fibRec", fibRec(6)); // 8
-
-// Dynamic O(n)
-function fibDP(n) {
-  const dp = [1, 1];
-
-  for (let i = 2; i < n; i++) {
-    dp[i] = dp[i - 1] + dp[i - 2];
-  }
-
-  return dp[n - 1];
-}
-
-console.log("fibDP", fibDP(6)); // 8
+  return dp[n];
+};
