@@ -1,3 +1,4 @@
+// #1
 // https://leetcode.com/problems/boats-to-save-people/
 // Boats to Save People
 
@@ -9,7 +10,7 @@ var numRescueBoats = function(people, limit) {
   // people[i] <= lim
 
   let res = 0;
-  const peopleS = [...people].sort((x, y) => x - y); // O()
+  const peopleS = [...people].sort((x, y) => x - y); // O(n)
 
   let i = 0,
     j = peopleS.length - 1;
