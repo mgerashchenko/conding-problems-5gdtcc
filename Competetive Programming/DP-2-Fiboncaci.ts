@@ -1,4 +1,4 @@
-// #
+// #2
 // https://leetcode.com/problems/fibonacci-number/
 
 var fib = function(n) {

@@ -32,7 +32,7 @@ var strStr = function(haystack, needle) {
       if (haystack[i + j] !== needle[j]) break;
     }
     if (j === needle.length) return i;
-  }
+  } // O(n^2);
 
   return -1;
 };
