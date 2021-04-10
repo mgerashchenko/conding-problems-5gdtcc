@@ -6,7 +6,6 @@ var hasCycle = function(head) {
   // 0 <= n <= ...
 
   if (!head) return false;
-  let node = head;
 
   let slow = head;
   let fast = head.next && head.next.next;
