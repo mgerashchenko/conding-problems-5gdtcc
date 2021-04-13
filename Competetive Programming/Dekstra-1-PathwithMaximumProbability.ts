@@ -11,70 +11,58 @@
  * @return {number}
  */
 var maxProbability = function(n, edges, succProb, start, end) {
-  let nodes = [];
-
-  // describe the graph
-  for (let i in edges) {
-    let el = edges[i];
-    if (!nodes[el[0]]) {
-      nodes[el[0]] = [];
-    }
-    if (!nodes[el[1]]) {
-      nodes[el[1]] = [];
-    }
-    nodes[el[0]].push({ index: el[1], prob: succProb[i] });
-    nodes[el[1]].push({ index: el[0], prob: succProb[i] });
-  }
-
-  const pobabilities = [];
-  for (let i = 0; i < nodes.length; i++) {
-    pobabilities[i] = i === start ? 1 : 0;
-  }
-
-  let heap = new Heap(new Node(start, pobabilities[start]));
-  let visited = [];
-
-  let node = heap.get();
-
-  // while(node.index !== end){
-  visited.push(node.index);
-
-  for (let el of nodes[node.index]) {
-    let pobability = el.index === start ? 0 : pobabilities[el.index];
-    let prob = node.value * el.prob;
-
-    console.log(el, pobability, prob);
-    if (prob > pobability) {
-      pobabilities[el.index] = prob;
-    }
-  }
-  // }
-
-  console.log(pobabilities);
-
-  return pobabilities[end];
+    // Dekstra
+    // Need priority queue
+    let heap = new Heap();
+    // main table
+    let priorities = [];
+    // need to count visited nodes
+    let visited = new Set();
+    
+    return 0;
 };
+
+// Need node object to add to he main table and priority queue
 class Node {
-  next = null;
-  constructor(index, value) {
-    this.index = index;
-    this.value = value;
-  }
+    next = null;
+    constructor(index, val) {
+        this.index = index
+        this.val = val;
+    }
 }
+// There is no priority queue in the Javascript
 class Heap {
-  queue = [];
-  constructor(node) {
-    this.queue.push(node);
-  }
-  get() {
-    [this.queue[0], this.queue[this.queue.length - 1]] = [
-      this.queue[this.queue.length - 1],
-      this.queue[0]
-    ];
-    let max = this.queue.pop();
-
-    //TODO: reballance;
-
-    return max;
-  }
+    queue = [];
+    constructor(){}
+    add(index, val) {
+        let node = new Node(index, val);
+        this.queue.push(node);
+        
+        let cur = this.queue.length-1;
+        let parent = ~~((cur-1)/2);
+        while(this.queue[cur].val > this.queue[parent].val && cur>=0) {
+            [this.queue[cur], this.queue[parent]] = [this.queue[parent], this.queue[cur]];
+            cur = parent;
+            parent = ~~((cur-1)/2);
+        }
+    }
+    get() {
+        let first_i = 0;
+        let last_i = this.queue.length-1;
+        [this.queue[first_i], this.queue[last_i]] = [this.queue[last_i], this.queue[first_i]];
+        let max_node = this.queue.pop();
+        
+        let cur_i = 0;
+        let left_val = this.queue[cur_i*2+1] && this.queue[cur_i*2+1].val;
+        let right_val = this.queue[cur_i*2+2] && this.queue[cur_i*2+2].val;
+        let max_i = left_val > right_val ? cur_i*2+1 : cur_i*2+2;
+        while(this.queue[max_i] != null && this.queue[cur_i].val<this.queue[max_i].val){
+            [this.queue[cur_i], this.queue[max_i]] = [this.queue[max_i], this.queue[cur_i]];
+            cur_i = max_i;
+            left_val = this.queue[cur_i*2+1] && this.queue[cur_i*2+1].val;
+            right_val = this.queue[cur_i*2+2] && this.queue[cur_i*2+2].val;
+            max_i = left_val > right_val ? cur_i*2+1 : cur_i*2+2;
+        }
+        return max_node;
+    }
 }
