@@ -4,9 +4,9 @@ console.clear();
 
 (() => {
   class Node {
-    val: Number;
-    left: Node;
-    right: Node;
+    val = Number;
+    left = Node;
+    right = Node;
 
     constructor(val) {
       this.val = val;
@@ -47,40 +47,55 @@ console.clear();
   console.log("tree", tree);
 
   // DFS PRE ORDER
-  (function DFS(root) {
-    const res = [];
-    const stack = [root];
-    let sum = 0;
+  // Bottom -> Left -> Right
+  (function DFSPre(root) {
+    const res = [],
+      stack = [root];
 
-    while (stack.length) {
-      let el = stack.pop();
-      if (el.val != null) {
-        sum += el.val;
-      }
-      res.push(el.val);
-      el.right && stack.push(el.right);
-      el.left && stack.push(el.left);
+    while (stack.length > 0) {
+      let node = stack.pop();
+      res.push(node.val);
+
+      // should push right first in roder
+      // to get left form the stack first
+      if (node.right) stack.push(node.right);
+      if (node.left) stack.push(node.left);
     }
 
-    console.log("DFS sum", res);
+    console.log("DFS PreOrder", res);
   })(tree);
 
-  // DFS PRE ORDER
-  (function DFS(root: Node) {
-    const res = [];
-    const stack = [root];
-    let sum = 0;
+  // DFS POST ORDER
+  // Left -> Right -> Top
+  (function DFSPost(root) {
+    const res = [],
+      stack = [root];
 
-    while (stack.length) {
-      let el = stack.pop();
-      if (el.val != null) {
-        sum += el.val;
+    while (stack.length > 0) {
+      let node = stack[stack.length - 1];
+
+      // if node doesn't have childres it is current bottom
+      if (node.right == null && node.left == null) {
+        res.push(node.val);
+        stack.pop();
+        continue;
       }
-      res.push(el.val);
-      el.right && stack.push(el.right);
-      el.left && stack.push(el.left);
+
+      if (node.right) {
+        // push right first to have left pop first from the stack
+        stack.push(node.right);
+        // set node children to null, to mark as visited
+        node.right = null;
+      }
+
+      if (node.left) {
+        // lef will come first
+        stack.push(node.left);
+        // set node children to null, to mark as visited
+        node.left = null;
+      }
     }
 
-    console.log("DFS Preo", res);
+    console.log("DFS PostOrder", res);
   })(tree);
 })();
