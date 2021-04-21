@@ -56,8 +56,8 @@ console.clear();
       let node = stack.pop();
       res.push(node.val);
 
-      // should push right first in roder
-      // to get left form the stack first
+      // should push right first in order
+      // to get left from the stack first
       if (node.right) stack.push(node.right);
       if (node.left) stack.push(node.left);
     }
@@ -74,7 +74,7 @@ console.clear();
     while (stack.length > 0) {
       let node = stack[stack.length - 1];
 
-      // if node doesn't have childres it is current bottom
+      // if the node doesn't have children, it's current bottom
       if (node.right == null && node.left == null) {
         res.push(node.val);
         stack.pop();
@@ -82,7 +82,7 @@ console.clear();
       }
 
       if (node.right) {
-        // push right first to have left pop first from the stack
+        // push a right el first to have a left el pop first from the stack
         stack.push(node.right);
         // set node children to null, to mark as visited
         node.right = null;
