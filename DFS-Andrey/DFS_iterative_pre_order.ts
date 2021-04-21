@@ -63,15 +63,18 @@ console.clear();
     }
 
     console.log("DFS PreOrder", res);
-  })(tree);
+  })({ ...tree });
 
   // DFS POST ORDER
+  // https://s3.ap-south-1.amazonaws.com/afteracademy-server-uploads/how-to-traverse-in-a-tree-postorder-13146c73f47dcf88.png
   // Left -> Right -> Top
   (function DFSPost(root) {
     const res = [],
       stack = [root];
 
     while (stack.length > 0) {
+      // make a deep copy of the tree;
+      stack[stack.length - 1] = { ...stack[stack.length - 1] };
       let node = stack[stack.length - 1];
 
       // if the node doesn't have children, it's current bottom
@@ -97,5 +100,36 @@ console.clear();
     }
 
     console.log("DFS PostOrder", res);
-  })(tree);
+  })({ ...tree });
+
+  // DFS IN ORDER
+  // https://i2.wp.com/learnersbucket.com/wp-content/uploads/2020/02/In-order-tree-traversal-1.png?w=768&ssl=1
+  // Bottom -> Left -> Top -> Right
+  (function DFSPost(root) {
+    const res = [],
+      stack = [root];
+
+    while (stack.length > 0) {
+      // deep copy
+      let node = { ...stack.pop() };
+
+      if (node.left == null) {
+        res.push(node.val);
+      }
+
+      if (node.right != null) {
+        stack.push(node.right);
+      }
+
+      if (node.left != null || node.right != null) {
+        stack.push({ val: node.val, left: null, right: null });
+      }
+
+      if (node.left != null) {
+        stack.push(node.left);
+      }
+    }
+
+    console.log("DFS IN ORDER", res);
+  })({ ...tree });
 })();
