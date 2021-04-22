@@ -45,26 +45,35 @@ console.clear();
   console.log("tree", tree);
 
   // DFS POST ORDER
+  // Left -> Right -> Top
+  // https://s3.ap-south-1.amazonaws.com/afteracademy-server-uploads/how-to-traverse-in-a-tree-postorder-13146c73f47dcf88.png
   (function DFSPost(root) {
-    const res = [];
-    const stack = [root];
+    const res = [],
+      stack = [root];
 
     while (stack.length) {
-      let el = stack[stack.length - 1];
-      if (el.right) {
-        stack.push(el.right);
-        el.right = null;
-      }
-      if (el.left) {
-        stack.push(el.left);
-        el.left = null;
-      }
-      if (el.val === stack[stack.length - 1].val) {
+      // deep copy of the array
+      let { ...node } = stack[stack.length - 1],
+        { val, left, right } = node;
+
+      // print node when it is leafe
+      if (!(left || right)) {
+        res.push(val);
         stack.pop();
-        res.push(el.val);
+        continue;
       }
+
+      // clean node, to be ready to print
+      node.left = null;
+      node.right = null;
+      stack[stack.length - 1] = node;
+
+      // add right first to be last in the stack
+      right && stack.push(right);
+      // left will be first
+      left && stack.push(left);
     }
 
     console.log("DFS PostOrder", res);
-  })(tree);
+  })({ ...tree });
 })();

@@ -1,5 +1,4 @@
 // https://levelup.gitconnected.com/how-to-traverse-a-tree-using-javascript-c9a79826e819
-
 console.clear();
 
 (() => {
@@ -48,97 +47,86 @@ console.clear();
 
   // DFS PRE ORDER
   // Bottom -> Left -> Right
+  console.log("              20,15,13,18,25,30");
   (function DFSPre(root) {
     const res = [],
       stack = [root];
 
-    while (stack.length > 0) {
-      let node = stack.pop();
-      res.push(node.val);
-
-      // should push right first in order
-      // to get left from the stack first
-      if (node.right) stack.push(node.right);
-      if (node.left) stack.push(node.left);
+    while (stack.length) {
+      let { val, left, right } = stack.pop();
+      // we can imidiatly add value
+      res.push(val);
+      // push right first to be last in the stack
+      right && stack.push(right);
+      // left will be first in the stack
+      left && stack.push(left);
     }
-
     console.log("DFS PreOrder", res);
-  })({...tree});
+  })({ ...tree });
 
   // DFS POST ORDER
   // Left -> Right -> Top
   // https://s3.ap-south-1.amazonaws.com/afteracademy-server-uploads/how-to-traverse-in-a-tree-postorder-13146c73f47dcf88.png
+  console.log("           -    13,18,15,30,25,20");
   (function DFSPost(root) {
     const res = [],
       stack = [root];
 
-    while (stack.length > 0) {
-      // make a deep copy of the tree;
-      stack[stack.length - 1] = {...stack[stack.length - 1]};
-      let node = stack[stack.length - 1];
+    while (stack.length) {
+      // deep copy of the array
+      let { ...node } = stack[stack.length - 1],
+        { val, left, right } = node;
 
-      // if the node doesn't have children, it's current bottom
-      if (node.right == null && node.left == null) {
-        res.push(node.val);
+      // print node when it is leafe
+      if (!(left || right)) {
+        res.push(val);
         stack.pop();
         continue;
       }
 
-      if (node.right) {
-        // push a right el first to have a left el pop first from the stack
-        stack.push(node.right);
-        // set node children to null, to mark as visited
-        node.right = null;
-      }
+      // clean node, to be ready to print
+      node.left = null;
+      node.right = null;
+      stack[stack.length - 1] = node;
 
-      if (node.left) {
-        // lef will come first
-        stack.push(node.left);
-        // set node children to null, to mark as visited
-        node.left = null;
-      }
+      // add right first to be last in the stack
+      right && stack.push(right);
+      // left will be first
+      left && stack.push(left);
     }
 
     console.log("DFS PostOrder", res);
-  })({...tree});
+  })({ ...tree });
 
   // DFS IN ORDER
   // Bottom -> Left -> Top -> Right
   // https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.techiedelight.com%2Finorder-tree-traversal-iterative-recursive%2F&psig=AOvVaw2aJghaaT75guFSIQItvCb2&ust=1619059038744000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNiuk4qnjvACFQAAAAAdAAAAABAt
-  (function DFSPost(root) {
+  console.log("            -    13,15,18,20,25,30");
+  (function DFSInOrder(root) {
     const res = [],
       stack = [root];
 
-    while(stack.length>0){
-      // deep copy
-      let node = {...stack.pop()};
+    while (stack.length) {
+      // deep copy;
+      let { ...node } = stack.pop(),
+        { val, left, right } = node;
+      // clean the node
+      node = { val, left: null, right: null };
 
-      // to understand the algorithm
-      // console.log(node.val, stack.map(n=>n.val))
-
-      // if noe left node
-      if(node.left == null){
-        // it is a bottom
-        res.push(node.val);
+      // if no node left print
+      if (!left) {
+        res.push(val);
+        right && stack.push(right);
+        continue;
       }
 
-      // push right first to be last in stack
-      if(node.right != null){
-        stack.push(node.right);
-      }
-
-      // if there is no left, we can clean the node
-      // note that right is added already
-      if(node.left != null){
-        stack.push({val:node.val, left: null, right: null});
-      }
-
-      // add left as the last to be first in the stack
-      if(node.left != null){
-        stack.push(node.left); 
-      }
+      // if left exist put into stack in reverse order
+      // right top left
+      right && stack.push(right);
+      stack.push(node);
+      stack.push(left);
     }
 
     console.log("DFS IN ORDER", res);
-  })({...tree});
+  })({ ...tree });
 })();
