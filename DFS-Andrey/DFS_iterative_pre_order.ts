@@ -47,52 +47,52 @@ console.clear();
 
   // DFS PRE ORDER
   // Bottom -> Left -> Right
-  console.log("              20,15,13,18,25,30");
+  console.log("                    20, 15, 13, 18 ,25 ,30");
   (function DFSPre(root) {
+    if (!root) return [];
+
     const res = [],
       stack = [root];
 
     while (stack.length) {
-      let { val, left, right } = stack.pop();
-      // we can imidiatly add value
+      let node = stack.pop(),
+        { val, right, left } = node;
+
+      // ready to print
       res.push(val);
-      // push right first to be last in the stack
+
+      // put right to the stack first
       right && stack.push(right);
-      // left will be first in the stack
+
+      // left will be first when we get from the stack;
       left && stack.push(left);
     }
+
     console.log("DFS PreOrder", res);
   })({ ...tree });
 
   // DFS POST ORDER
   // Left -> Right -> Top
   // https://s3.ap-south-1.amazonaws.com/afteracademy-server-uploads/how-to-traverse-in-a-tree-postorder-13146c73f47dcf88.png
-  console.log("           -    13,18,15,30,25,20");
+  console.log("                     13, 18, 15, 30 ,25 ,20");
   (function DFSPost(root) {
+    if (!root) return [];
+
     const res = [],
-      stack = [root];
+      stack = [{ node: root }];
 
     while (stack.length) {
-      // deep copy of the array
-      let { ...node } = stack[stack.length - 1],
-        { val, left, right } = node;
+      let { node, visited } = stack.pop();
 
-      // print node when it is leafe
-      if (!(left || right)) {
-        res.push(val);
-        stack.pop();
+      if (!node) {
         continue;
       }
-
-      // clean node, to be ready to print
-      node.left = null;
-      node.right = null;
-      stack[stack.length - 1] = node;
-
-      // add right first to be last in the stack
-      right && stack.push(right);
-      // left will be first
-      left && stack.push(left);
+      let { val, left, right } = node;
+      visited
+        ? res.push(val)
+        : stack.push(
+            ...[{ node, visited: true }, { node: right }, { node: left }]
+          );
     }
 
     console.log("DFS PostOrder", res);
@@ -101,30 +101,30 @@ console.clear();
   // DFS IN ORDER
   // Bottom -> Left -> Top -> Right
   // https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.techiedelight.com%2Finorder-tree-traversal-iterative-recursive%2F&psig=AOvVaw2aJghaaT75guFSIQItvCb2&ust=1619059038744000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNiuk4qnjvACFQAAAAAdAAAAABAt
-  console.log("            -    13,15,18,20,25,30");
+  console.log("                    13, 15, 18, 20, 25, 30");
   (function DFSInOrder(root) {
+    if (!root) return [];
+
     const res = [],
-      stack = [root];
+      stack = [{ node: root }];
+
+    // stack
+    // while
+    // if null continue
+    // if visited print
+    // if not push right node left
 
     while (stack.length) {
-      // deep copy;
-      let { ...node } = stack.pop(),
-        { val, left, right } = node;
-      // clean the node
-      node = { val, left: null, right: null };
+      let { node, visited } = stack.pop();
 
-      // if no node left print
-      if (!left) {
-        res.push(val);
-        right && stack.push(right);
-        continue;
-      }
+      if (!node) continue;
 
-      // if left exist put into stack in reverse order
-      // right top left
-      right && stack.push(right);
-      stack.push(node);
-      stack.push(left);
+      let { val, right, left } = node;
+      visited
+        ? res.push(val)
+        : stack.push(
+            ...[{ node: right }, { node, visited: true }, { node: left }]
+          );
     }
 
     console.log("DFS IN ORDER", res);
