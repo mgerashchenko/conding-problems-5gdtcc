@@ -1,6 +1,6 @@
 // # - PROGRESS
 // Path with Maximum Probability
-// https://leetcode.com/problems/path-with-minimum-effort/
+// https://leetcode.com/problems/path-with-maximum-probability/
 
 /**
  * @param {number} n
