@@ -1,37 +1,71 @@
-// #1 - naive, space complexity is O(n)
-// https://leetcode.com/problems/linked-list-cycle-ii/
-// Linked List Cycle II
-// Medium
+// https://lenchen.medium.com/leetcode-142-linked-list-cycle-ii-7dd1dc691797
 
-// Lets do Floyds algo next time!
-// https://www.youtube.com/watch?v=9YTjXqqJEFE
-// It is about to have fast and slow.
-// then from start and meeting point iterate tmp = tmp.next
-// new meeting point will be the dublicate or the start of the loop
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
 
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
 var detectCycle = function(head) {
-  // Constraints
-  // length [0, 10]
-  // val [-10, 10]
-  // pos -1 or index [0,10]
-  // O(1) - memory
-  // don't modify the list
+    // Constraints
+    // length [0, 10]
+    // val [-10, 10]
+    // pos -1 or index [0,10]
+    // O(1) - memory
+    // don't modify the list
+    
+    
+    // --- HashSet Solution
+//     // easy win
+//     if(head == null || head.next == null) return null;
+    
+//     let map = new Set(),
+//         tmp = head;
+//     while(tmp != null){
+//         // if node exist it is a loop
+//         if(map.has(tmp)){
+//             return tmp;
+//         }
+//         // remember the nodes in the map
+//         map.add(tmp);
+//         tmp = tmp.next;
+//     }
+//     return null;
+    
+    // Ffloyds sycle Detection
+    // Detect a cycle with space complexity O(n)
+    // O(n/2 +n) == O(n)
+    
+    // Easy win first
+    if(!head) return null;
 
-  // easy win
-  if (head == null || head.next == null) return null;
+    // classic fast and slow
+    let slow = head,
+        fast = head;
+    while(fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
 
-  let map = new Map(),
-    tmp = head,
-    pos = 0;
-  while (tmp != null) {
-    // if node exist it is a loop
-    if (map.has(tmp)) {
-      return tmp;
+        if(slow == fast) {
+            break;
+        }
     }
-    // remember the nodes in the map
-    map.set(tmp);
-    tmp = tmp.next;
-  }
+    
+    // there is no cycle detected
+    if(!fast || !fast.next) return null;
 
-  return null;
+    // x mod l = z
+    slow = head;
+    while(slow !== fast){
+        slow = slow.next;
+        fast = fast.next;
+    }
+
+    return slow;
 };
