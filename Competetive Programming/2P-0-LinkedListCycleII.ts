@@ -39,8 +39,6 @@ var detectCycle = function(head) {
 //     return null;
     
     // Ffloyds sycle Detection
-    // Detect a cycle with space complexity O(n)
-    // O(n/2 +n) == O(n)
     
     // Easy win first
     if(!head) return null;
