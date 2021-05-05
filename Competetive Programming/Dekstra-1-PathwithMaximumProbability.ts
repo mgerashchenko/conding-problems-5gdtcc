@@ -1,15 +1,7 @@
-// # - PROGRESS
+// #0
 // Path with Maximum Probability
 // https://leetcode.com/problems/path-with-maximum-probability/
 
-/**
- * @param {number} n
- * @param {number[][]} edges
- * @param {number[]} succProb
- * @param {number} start
- * @param {number} end
- * @return {number}
- */
 /**
  * @param {number} n
  * @param {number[][]} edges
@@ -23,43 +15,46 @@ var maxProbability = function(n, edges, succProb, start, end) {
   // Need priority queue
   let heap = new Heap();
   // main table
-  let priorities = [];
+  let priorities = {};
   // need to count visited nodes
   let visited = new Set();
-  let nodes = [];
+  let nodes = {};
 
   // set notes
-  for (let i = 0; i < edges.length; i++) {
-    for (let j = 0; j < 2; j++) {
-      if (nodes[edges[i][j]] == null) {
-        nodes[edges[i][j]] = [];
+  for (let pair of edges) {
+    for (let edge of pair) {
+      if (nodes[edge] == null) {
+        nodes[edge] = [];
       }
     }
 
-    nodes[edges[i][0]].push({ index: edges[i][1], val: succProb[i] });
-    nodes[edges[i][1]].push({ index: edges[i][0], val: succProb[i] });
+    let [first, second] = pair,
+      index = edges.indexOf(pair);
+    nodes[first].push({ index: second, val: succProb[index] });
+    nodes[second].push({ index: first, val: succProb[index] });
   }
 
   // init priorities
-  for (let i = 0; i < nodes.length; i++) {
-    priorities[i] = i === start ? 1 : 0;
+  for (let node of Object.keys(nodes)) {
+    priorities[node] = node == start ? 1 : 0;
   }
 
   let cur = start;
   while (cur !== end) {
+    if (!nodes[cur]) return 0;
+
     if (visited.has(cur)) {
-      cur = heap.get();
-      if (cur == null) return 0;
-      cur = cur.index;
+      node = heap.get();
+      if (node == null) return 0;
+      cur = node.index;
       continue;
     }
 
-    for (let i = 0; i < nodes[cur].length; i++) {
-      priorities[nodes[cur][i].index] = Math.max(
-        priorities[cur] * nodes[cur][i].val,
-        priorities[nodes[cur][i].index]
-      );
-      heap.add(nodes[cur][i].index, priorities[nodes[cur][i]]);
+    for (let node of nodes[cur]) {
+      let { index, val } = node;
+
+      priorities[index] = Math.max(priorities[cur] * val, priorities[index]);
+      heap.add(index, priorities[index]);
     }
     visited.add(cur);
     cur = heap.get().index;
