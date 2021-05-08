@@ -63,23 +63,15 @@ var maxProbability = function(n, edges, succProb, start, end) {
   return priorities[end];
 };
 
-// Need node object to add to he main table and priority queue
-class Node {
-  constructor(index, val) {
-    this.index = index;
-    this.val = val;
-  }
-}
 // There is no priority queue in the Javascript
 class Heap {
   queue = [];
   constructor() {}
   add(index, val) {
-    let node = new Node(index, val);
-    this.queue.push(node);
+    this.queue.push({ index, val });
 
     let cur = this.queue.length - 1;
-    let parent = ~~((cur - 1) / 2);
+    let parent = ~~(cur - 1) / 2;
     while (this.queue[cur].val > this.queue[parent].val && cur >= 0) {
       [this.queue[cur], this.queue[parent]] = [
         this.queue[parent],
