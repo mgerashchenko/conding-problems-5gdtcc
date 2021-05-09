@@ -6,46 +6,38 @@
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-  // Constraints
-  // 1 <= nums.lenght
-  // - <= nums[i] <= +
-  // nums is sorted in ascending order
+  //     Constraints
+  //     1 <= nums.length
+  //     - <= nums[i] <= +
+  //     dublicates in a row
+  //     soreted in ascending order
 
-  // Algorithm
-  // - Set 2 pointers in the begining
-  // - move pointers forward if there is no dublicates
-  // - if there is dublicate movo only one pointer
-  // unitil there is no pointers
-  //
+  //     Algorithm
+  //     use 2 pointers slow and fast
+  //     the fast should scan the elements
+  //     slow is for the replacing in the place
+  //     use counter for duplicates
 
-  // p         x
-  // i           x
-  //   1,1,1,2,2,3
-
-  let count = 0,
-    prev = 0,
-    i = 0;
-  while (i < nums.length) {
-    // if there is dublicate
-    count =
-      nums[i] === nums[i - 1]
-        ? // increment counter
-          count + 1
-        : // reset counter;
+  //     Use 2 pointers
+  let slow = 0,
+    fast = 0,
+    counter = 0;
+  while (fast < nums.length) {
+    // if there is duplicate
+    counter =
+      nums[fast] === nums[fast - 1]
+        ? // increase
+          counter + 1
+        : // or reset counter
           0;
-
-    // if dublicates more than 1
-    if (count > 1) {
-      // continue interating the array
-      i++;
+    if (counter < 2) {
+      nums[slow] = nums[fast];
+      fast++;
+      slow++;
       continue;
     }
+    fast++;
+  } // O(n)
 
-    // store the value and move pointers
-    nums[prev] = nums[i];
-    prev++;
-    i++;
-  } // T:O(n)
-
-  return prev;
-}; // T:O(n) S:O(n)
+  return slow;
+}; // O(n)
