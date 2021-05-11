@@ -18,26 +18,31 @@ var removeDuplicates = function(nums) {
   //     slow is for the replacing in the place
   //     use counter for duplicates
 
-  //     Use 2 pointers
-  let slow = 0,
-    fast = 0,
-    counter = 0;
+  // the array is sorted
+
+  let fast = 0,
+    slow = 0,
+    count = 0;
+
   while (fast < nums.length) {
-    // if there is duplicate
-    counter =
+    // if there is a dublicate
+    count =
       nums[fast] === nums[fast - 1]
-        ? // increase
-          counter + 1
-        : // or reset counter
+        ? // incriment the count
+          count + 1
+        : // reset the count
           0;
-    if (counter < 2) {
-      nums[slow] = nums[fast];
+
+    if (count > 1) {
       fast++;
-      slow++;
       continue;
     }
-    fast++;
-  } // O(n)
 
+    nums[slow] = nums[fast];
+    slow++;
+    fast++;
+  }
+
+  // return slow
   return slow;
 }; // O(n)

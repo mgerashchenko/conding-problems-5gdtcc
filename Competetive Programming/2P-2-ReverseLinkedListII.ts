@@ -40,6 +40,6 @@ var reverseBetween = function(head, left, right) {
         prev.next = next;
     } // O(n)
     
-    // Return the result of reverted li
+    // Return the result of reverted list
     return dummy.next;
 }; // O(n)
