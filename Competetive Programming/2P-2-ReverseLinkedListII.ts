@@ -4,49 +4,42 @@
 // https://www.youtube.com/watch?v=wk8-_M-2fzI
 
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
  * @param {ListNode} head
  * @param {number} left
  * @param {number} right
  * @return {ListNode}
  */
 var reverseBetween = function(head, left, right) {
-  // Constraints
-  // 1 <= n
-  // 1 <= left <= right <= n
-
-  // Algorigthm
-  // Use 2 pointers to reverse the elments
-  // set cur element
-  // use dummy node to prevent the conner case
-  //      when start = 1
-
-  // init dummy node
-  let dummy = { next: head };
-
-  let cur = head,
-    prev = dummy;
-  // set current and p
-  for (let i = 1; i < left; i++) {
-    prev = cur;
-    cur = cur.next;
-  }
-
-  // interate the list
-  let next;
-  for (let i = 0; i < right - left; i++) {
-    let next = cur.next;
-    cur.next = next.next;
-    next.next = prev.next;
-    prev.next = next;
-  }
-
-  // return the result
-  return dummy.next;
-};
+    // Constraints
+    // 1<= n <=100
+    // - <= val <= +
+    // 1 <= left <= rigth
+    
+    // Algorithm
+    // need to set left element to proper element
+    // revers cur left and next elent
+    // repeat untill next el is right
+    // to cover conner case add dummy node in the begining
+    
+    let dummy = {next: head};
+    
+    // init start
+    let prev = dummy,
+        cur = prev.next;
+    for(let i=1;i<left;i++){
+        cur = cur.next;
+        prev = prev.next;
+    }
+    
+    // iterate and reverse
+    let next ;
+    for(let i=left;i<right;i++) {
+        next = cur.next;
+        cur.next = next.next;
+        next.next = prev.next;
+        prev.next = next;
+    } // O(n)
+    
+    // Return the result of reverted li
+    return dummy.next;
+}; // O(n)
