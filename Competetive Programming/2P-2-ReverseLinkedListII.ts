@@ -17,36 +17,36 @@
  * @return {ListNode}
  */
 var reverseBetween = function(head, left, right) {
-    // Constraints
-    // 1 <= n
-    // 1 <= left <= right <= n
-    
-    // Algorigthm
-    // Use 2 pointers to reverse the elments
-    // set cur element
-    // use dummy node to prevent the conner case
-    //      when start = 1
-    
-    // init dummy node
-    let dummy = {next: head};
-    
-    let cur = head,
-        prev = dummy;
-    // set current and p
-    for(let i=1;i<left;i++){
-        prev=cur;
-        cur=cur.next;
-    }
-    
-    // interate the list
-    let next;
-    for(let i=0;i<right-left;i++) {
-        let next = cur.next;
-        cur.next = next.next;
-        next.next = prev.next 
-        prev.next = next;
-    }
-    
-    // return the result
-    return dummy.next;
+  // Constraints
+  // 1 <= n
+  // 1 <= left <= right <= n
+
+  // Algorigthm
+  // Use 2 pointers to reverse the elments
+  // set cur element
+  // use dummy node to prevent the conner case
+  //      when start = 1
+
+  // init dummy node
+  let dummy = { next: head };
+
+  let cur = head,
+    prev = dummy;
+  // set current and p
+  for (let i = 1; i < left; i++) {
+    prev = cur;
+    cur = cur.next;
+  }
+
+  // interate the list
+  let next;
+  for (let i = 0; i < right - left; i++) {
+    let next = cur.next;
+    cur.next = next.next;
+    next.next = prev.next;
+    prev.next = next;
+  }
+
+  // return the result
+  return dummy.next;
 };
