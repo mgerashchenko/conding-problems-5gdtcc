@@ -11,67 +11,73 @@
  * @return {number}
  */
 var maxProbability = function(n, edges, succProb, start, end) {
-  // Dekstra
-  // Need priority queue
-  let heap = new Heap();
-  // main table
-  let priorities = {};
-  // need to count visited nodes
-  let visited = new Set();
-  let nodes = {};
+    // Constraints
+    // 2<=n<= 1000
+    // 0<=start,end<n
+    // start != end
+    // 0<=a, b<n
+    // 0<=edges.length , succProb.length<= 1000
+    // 0<=succProb[i]<=1
+    
+    // build adjacency list
+    let nodes = {};
+    for(let i=0;i<edges.length;i++){
+        let [first, second] = edges[i];
+        
+        let val = succProb[i];
+        nodes[first] = !nodes[first] ? [] : nodes[first];
+        nodes[second] = !nodes[second] ? [] : nodes[second];
 
-  // set notes
-  for (let pair of edges) {
-    for (let edge of pair) {
-      if (nodes[edge] == null) {
-        nodes[edge] = [];
-      }
+        if(!nodes[first]) nodes[first] = [];
+        nodes[first].push({index: second, val});
+        nodes[second].push({index: first, val});
     }
-
-    let [first, second] = pair,
-      index = edges.indexOf(pair);
-    nodes[first].push({ index: second, val: succProb[index] });
-    nodes[second].push({ index: first, val: succProb[index] });
-  }
-
-  // init priorities
-  for (let node of Object.keys(nodes)) {
-    priorities[node] = node == start ? 1 : 0;
-  }
-
-  let cur = start;
-  while (cur !== end) {
-    if (!nodes[cur]) return 0;
-
-    if (visited.has(cur)) {
-      node = heap.get();
-      if (node == null) return 0;
-      cur = node.index;
-      continue;
+    
+    // If start or end is not in the graph, then bail out
+    if(!nodes[start] || !nodes[end]) return 0;
+    
+    // init probability
+    let probablity = {};
+    for(let node of Object.keys(nodes)){
+        probablity[node] = node == start ? 1 : 0;
     }
-
-    for (let node of nodes[cur]) {
-      let { index, val } = node;
-
-      priorities[index] = Math.max(priorities[cur] * val, priorities[index]);
-      heap.add(index, priorities[index]);
+    
+    // Start search of most probable path
+    let cur = start,
+        priorityQueue = new PriorityquequeMax();
+    while(cur !== end){
+        if(nodes[cur] && nodes[cur].visited){
+            let node = priorityQueue.get();
+            
+            // Bail out if there is no path from start to the end
+            if(!node) return 0;
+            
+            let {index} = node;
+            cur = index;
+            continue;
+        }
+        
+        for(let node of nodes[cur]){
+            let {index, val} = node;
+            probablity[index] = Math.max(probablity[index], probablity[cur]*val);
+            priorityQueue.add(index, probablity[index]);
+        }
+        nodes[cur].visited = true;
+        let {index} = priorityQueue.get();
+        cur = index;
     }
-    visited.add(cur);
-    cur = heap.get().index;
-  }
+    
+    return probablity[cur];
+}
 
-  return priorities[end];
-};
-
-// There is no priority queue in the Javascript
-class Heap {
+class PriorityquequeMax {
   queue = [];
   constructor() {}
   add(index, val) {
     this.queue.push({ index, val });
 
     let cur = this.queue.length - 1;
-    let parent = ~~(cur - 1) / 2;
+    let parent = ~~((cur - 1) / 2);
     while (this.queue[cur].val > this.queue[parent].val && cur >= 0) {
       [this.queue[cur], this.queue[parent]] = [
         this.queue[parent],
