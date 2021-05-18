@@ -4,105 +4,106 @@
 
 // DFS recursevly
 var maxDepth = function(root) {
-  // Write BFS
-  // Take the max length of the stack
+  // DFS recursive
 
-  // conner case
+  // connert case
   if (!root) return 0;
 
   let max = 0;
-  (function step(node, level) {
-    // base
-    let { children } = node;
-    if (!children.length) {
+  (function step(nodes, level) {
+    // base case
+    if (!nodes || !nodes.length) {
       max = Math.max(max, level);
     }
 
-    //recursion
-    for (let el of children) {
-      step(el, level + 1);
+    // recursion
+    for (let node of nodes) {
+      let { children } = node;
+      step(children, level + 1);
     }
-  })(root, 1);
-
-  // return result
+  })([root], 0);
   return max;
 };
 
 // BFS recursevly
 var maxDepth = function(root) {
-  // Write BFS
-  // Take the max length of the stack
+  // BFS recursive
 
   // connner case
   if (!root) return 0;
 
   let max = 0;
-
-  //step
   (function step(nodes, level) {
-    // base
+    // base case
     if (!nodes || !nodes.length) {
       max = level;
       return;
     }
 
-    // recursion
-    step(
-      nodes.reduce((prev, { children }) => [...prev, ...children], []),
-      level + 1
-    );
-  })([root], max);
+    // recursion, get all children
+    let tmp = [];
+    for (let node of nodes) {
+      let { children } = node;
+      tmp.push(...children);
+    }
+    step(tmp, level + 1);
+  })([root], 0);
 
-  // return result
+  // return level
   return max;
 };
 
 // DFS iteratively
 var maxDepth = function(root) {
-  // Write BFS
-  // Take the max length of the stack
+  // DFS iteratively
 
   // conner case
   if (!root) return 0;
 
   let max = 0,
-    stack = [{ node: root, level: 1 }];
+    stack = [{ node: root, level: 0 }];
   while (stack.length) {
     let { node, level } = stack.pop();
+    level++;
 
+    // base case
     let { children } = node;
     if (!children || !children.length) {
       max = Math.max(max, level);
     }
 
+    // iterative
     for (let node of children.reverse()) {
-      stack.push({ node, level: level + 1 });
+      stack.push({ node, level });
     }
   }
 
-  // return result
+  // return max;
   return max;
 };
 
 // BFS iteratively
 var maxDepth = function(root) {
-  // BFS iteratevly
-
-  // conner case
-  if (!root) return 0;
-
-  // iterate tree with queue
-  let level = 0,
-    queue = [root];
-  while (queue.length) {
-    level++;
-
-    let tmp = [];
-    for (let node of queue) {
-      tmp.push(...node.children);
+    // BFS iteretevly
+    
+    // conner case
+    if(!root) return 0;
+    
+    // Use array
+    let max=0,
+        array=[root];
+    while(array.length!==0){
+        max++;
+        
+        // iterate
+        let tmp = [];
+        for(let node of array){
+            let {children} = node;
+            tmp.push(...children);
+        }
+        
+        array = tmp;
     }
-    queue = tmp;
-  }
-
-  return level;
+    
+    return max
 };
