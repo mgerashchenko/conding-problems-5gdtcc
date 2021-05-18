@@ -57,7 +57,7 @@ var maxDepth = function(root) {
   return max;
 };
 
-// DFS interavly
+// DFS iteratively
 var maxDepth = function(root) {
   // Write BFS
   // Take the max length of the stack
@@ -84,25 +84,25 @@ var maxDepth = function(root) {
   return max;
 };
 
-// BFS interavly
+// BFS iteratively
 var maxDepth = function(root) {
-    // BFS iteratevly
-    
-    // conner case
-    if(!root) return 0;
-    
-    // iterate tree with queue
-    let level = 0,
-        queue = [root];
-    while(queue.length){
-        level++;
-        
-        let tmp = [];
-        for(let node of queue){
-            tmp.push(...node.children);
-        }
-        queue = tmp;
+  // BFS iteratevly
+
+  // conner case
+  if (!root) return 0;
+
+  // iterate tree with queue
+  let level = 0,
+    queue = [root];
+  while (queue.length) {
+    level++;
+
+    let tmp = [];
+    for (let node of queue) {
+      tmp.push(...node.children);
     }
-       
-    return level;   
+    queue = tmp;
+  }
+
+  return level;
 };
