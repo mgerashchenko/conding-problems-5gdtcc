@@ -84,26 +84,26 @@ var maxDepth = function(root) {
 
 // BFS iteratively
 var maxDepth = function(root) {
-    // BFS iteretevly
-    
-    // conner case
-    if(!root) return 0;
-    
-    // Use array
-    let max=0,
-        array=[root];
-    while(array.length!==0){
-        max++;
-        
-        // iterate
-        let tmp = [];
-        for(let node of array){
-            let {children} = node;
-            tmp.push(...children);
-        }
-        
-        array = tmp;
+  // BFS iteretevly
+
+  // conner case
+  if (!root) return 0;
+
+  // Use array
+  let max = 0,
+    array = [root];
+  while (array.length !== 0) {
+    max++;
+
+    // iterate
+    let tmp = [];
+    for (let node of array) {
+      let { children } = node;
+      tmp.push(...children);
     }
-    
-    return max
+
+    array = tmp;
+  }
+
+  return max;
 };
