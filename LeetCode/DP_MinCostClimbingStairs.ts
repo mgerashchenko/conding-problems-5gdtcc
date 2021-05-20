@@ -15,8 +15,6 @@ var minCostClimbingStairs = function(cost) {
     return Math.min(dp[dp.length-1], dp[dp.length-2]);
 };
 
-
-
 // Python
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
