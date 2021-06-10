@@ -26,9 +26,7 @@ const fruits_into_baskets = function(fruits) {
   }
 
   return max_count;
-};
-
-
+}; 
 
 // def fruits_into_baskets(fruits):
 //   hashMap = {}
@@ -40,14 +38,14 @@ const fruits_into_baskets = function(fruits) {
 //     if end_char not in hashMap:
 //       hashMap[end_char] = 0
 //     hashMap[end_char] += 1
-    
+
 //     while len(hashMap) > 2:
 //       start_char = fruits[start]
 //       hashMap[start_char] -= 1
 //       if hashMap[start_char] == 0:
 //         del hashMap[start_char]
 //       start += 1
-    
+
 //     max_count = max(max_count, end - start +1)
-  
+
 //   return max_count
