@@ -26,7 +26,7 @@ const fruits_into_baskets = function(fruits) {
   }
 
   return max_count;
-}; 
+}; //  O(N+N)O(N+N)
 
 // def fruits_into_baskets(fruits):
 //   hashMap = {}
