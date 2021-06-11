@@ -34,13 +34,13 @@ const non_repeat_substring = function(str) {
 
   // Use hash for indexes
   let map = {},
-      start = 0;
+    start = 0;
   // Use sliding window
-  for(let end=0; end<str.length;end++){
+  for (let end = 0; end < str.length; end++) {
     let end_char = str[end];
-  
+
     // if the was visited, move start to the char
-    if(map[end_char] != null){
+    if (map[end_char] != null) {
       // start could be ahead of old end indexes
       start = Math.max(start, map[end_char] + 1);
     }
