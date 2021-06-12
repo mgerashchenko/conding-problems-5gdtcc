@@ -1,6 +1,11 @@
 // https://www.educative.io/courses/grokking-the-coding-interview/R8DVgjq78yR
 // Longest Substring with Same Letters
 
+// sliding window
+// max length
+// hashMapCount
+// max repeats 
+
 const length_of_longest_substring = function(str, k) {
   let max = 0;
 
@@ -27,7 +32,6 @@ const length_of_longest_substring = function(str, k) {
   return max;
 }; // O(N)
 
-
 // def length_of_longest_substring(str, k):
 //   max_res = 0
 
@@ -39,7 +43,7 @@ const length_of_longest_substring = function(str, k) {
 
 //     if end_char not in map_char:
 //       map_char[end_char] = 0
-    
+
 //     map_char[end_char] += 1
 //     max_count = max(max_count, map_char[end_char])
 
