@@ -35,9 +35,9 @@ const length_of_longest_substring = function(str, k) {
 // def length_of_longest_substring(str, k):
 //   # max length
 //   # sliding window
-//   # hashMapCount 
+//   # hashMapCount
 //   # max char count
-  
+
 //   maxLength = 0
 
 //   maxCountChar = 0
