@@ -4,7 +4,7 @@
 // sliding window
 // max length
 // hashMapCount
-// max repeats 
+// max repeats count
 
 const length_of_longest_substring = function(str, k) {
   let max = 0;
@@ -33,25 +33,36 @@ const length_of_longest_substring = function(str, k) {
 }; // O(N)
 
 // def length_of_longest_substring(str, k):
-//   max_res = 0
+//   # max length
+//   # sliding window
+//   # hashMapCount 
+//   # max char count
+  
+//   maxLength = 0
 
-//   map_char = {}
-//   max_count = 0
+//   maxCountChar = 0
+//   hashMapCount = {}
+
 //   start = 0
+//   # len not let
 //   for end in range(len(str)):
-//     end_char = str[end]
+//     endChar = str[end]
 
-//     if end_char not in map_char:
-//       map_char[end_char] = 0
+//     if endChar not in hashMapCount:
+//       hashMapCount[endChar] = 0
+//     # endChar
+//     hashMapCount[endChar] += 1
 
-//     map_char[end_char] += 1
-//     max_count = max(max_count, map_char[end_char])
+//     # Typicall mistake endChar not end
+//     maxCountChar = max(maxCountChar, hashMapCount[endChar])
 
-//     while(end - start + 1 - max_count > k):
-//       start_char = str[start];
-//       map_char[start_char] -= 1
+//     if end - start + 1 - maxCountChar > k:
+//       startChar = str[start]
+//       # startChar not start
+//       hashMapCount[startChar] -= 1;
+//       # += not ++
 //       start += 1
 
-//     max_res = max(max_res, end - start + 1)
+//     maxLength = max(maxLength, end - start + 1)
 
-//   return max_res
+//   return maxLength
