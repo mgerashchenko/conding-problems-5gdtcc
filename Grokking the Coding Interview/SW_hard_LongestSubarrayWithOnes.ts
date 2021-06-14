@@ -24,7 +24,7 @@ const length_of_longest_substring = function(arr, k) {
   }
 
   return maxLength;
-}; // Time O(N) Space O()
+}; // Time O(N) Space O(N)
 
 // def length_of_longest_substring(arr, k):
 //   # max length
