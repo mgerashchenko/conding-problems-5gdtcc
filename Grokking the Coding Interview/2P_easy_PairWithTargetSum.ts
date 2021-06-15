@@ -40,4 +40,21 @@ const pair_with_targetsum = function(arr, target_sum) {
 //     if sum_cur < target_sum:
 //       start += 1
 
-//   return [-1,]
+//   return [-1,-1]
+
+// Alternative
+
+function pair_with_target_sum(arr, targetSum) {
+  // hasMap substraction
+
+  let hashMapSubst = {}
+  for(let i=0;i<arr.length;i++) {
+    let num = arr[i];
+    if(hashMapSubst[num] != null) {
+      return [hashMapSubst[num], i];
+    }
+
+    hashMapSubst[targetSum-num] = i
+  }
+  return [-1,-1]
+} // O(n)
