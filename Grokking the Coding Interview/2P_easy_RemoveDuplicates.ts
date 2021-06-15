@@ -27,5 +27,5 @@ const remove_duplicates = function(arr) {
 //     if arr[start] != arr[end]:
 //       start += 1
 //       arr[start] = arr[end]
-  
+
 //   return start + 1
