@@ -1,6 +1,11 @@
 // https://www.educative.io/courses/grokking-the-coding-interview/xog6q15W9GP
 // Pair with Target Sum
 
+// Brout Force O(N)
+// Binary Search O(N∗logN)
+// Hash Map O(N) O(N)
+// 2 Pointers O(N) O(1)
+
 const pair_with_targetsum = function(arr, target_sum) {
   // sort array
   // two pointers
@@ -58,3 +63,12 @@ function pair_with_target_sum(arr, targetSum) {
   }
   return [-1, -1];
 } // Time O(N) Spase O(N)
+
+// def pair_with_targetsum(arr, target_sum):
+//   hashMapSubIndex = {}
+//   for i, num in enumerate(arr):
+//     if num in hashMapSubIndex:
+//       return [hashMapSubIndex[num], i]
+//     hashMapSubIndex[target_sum - num] = i
+
+//   return [-1, -1]
