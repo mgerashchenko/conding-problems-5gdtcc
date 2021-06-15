@@ -19,7 +19,7 @@ const pair_with_targetsum = function(arr, target_sum) {
 
   // conner case
   return [-1, -1];
-}; // O(n)
+}; // Time O(N) Space O(1)
 
 // def pair_with_targetsum(arr, target_sum):
 //   # sorted array
@@ -47,14 +47,14 @@ const pair_with_targetsum = function(arr, target_sum) {
 function pair_with_target_sum(arr, targetSum) {
   // hasMap substraction
 
-  let hashMapSubst = {}
-  for(let i=0;i<arr.length;i++) {
+  let hashMapSubst = {};
+  for (let i = 0; i < arr.length; i++) {
     let num = arr[i];
-    if(hashMapSubst[num] != null) {
+    if (hashMapSubst[num] != null) {
       return [hashMapSubst[num], i];
     }
 
-    hashMapSubst[targetSum-num] = i
+    hashMapSubst[targetSum - num] = i;
   }
-  return [-1,-1]
-} // O(n)
+  return [-1, -1];
+} // Time O(N) Spase O(N)
