@@ -47,7 +47,7 @@ const search_triplets = function(arr) {
   }
 
   return result;
-}; // Sorting O(N logN) + third iterate O(N) * 2 pointers (N) === O(N2) + O(N2) === O(N)
+}; // Sorting O(N logN) + third iterate O(N) * 2 pointers (N) === O(N2) + O(N2) === O(N2)
 
 // def search_triplets(arr):
 //   # sort array
