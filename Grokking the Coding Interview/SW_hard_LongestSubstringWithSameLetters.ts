@@ -1,36 +1,36 @@
 // https://www.educative.io/courses/grokking-the-coding-interview/R8DVgjq78yR
 // Longest Substring with Same Letters
 
-// sliding window
-// max length
-// hashMapCount
-// max repeats count
+// Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s, find the length of the longest contiguous subarray having all 1s.
 
-const length_of_longest_substring = function(str, k) {
-  let max = 0;
 
-  let start = 0,
-    map = {},
-    max_count = 0;
-  for (let end = 0; end < str.length; end++) {
-    let end_char = str[end];
-    if (map[end_char] == null) {
-      map[end_char] = 0;
-    }
-    map[end_char]++;
-    max_count = Math.max(max_count, map[end_char]);
 
-    while (end - start + 1 - max_count > k) {
-      let start_char = str[start];
-      map[start_char]--;
+const length_of_longest_substring = function(arr, k) {
+  // max length, init 0
+  // sliding window
+  // count 1
+  // move start if length - 1's count > k limit
+  // udpate max with Math.max
+  // return max length
+
+  let maxLength = 0;
+
+  let countOne = 0;
+
+  let start = 0;
+  for(let end=0; end < arr.length; end++) {
+    if(arr[end] == 1) countOne++;
+
+    while(end - start + 1 - countOne > k) {
+      if(arr[start] === 1) countOne--;
       start++;
     }
 
-    max = Math.max(max, end - start + 1);
+    maxLength = Math.max(maxLength, end - start + 1);  
   }
 
-  return max;
-}; // O(N)
+  return maxLength;
+} // O(N+N) O(1)
 
 // def length_of_longest_substring(str, k):
 //   # max length
