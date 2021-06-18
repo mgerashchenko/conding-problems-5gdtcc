@@ -12,7 +12,7 @@ const longest_substring_with_k_distinct = function(str, k) {
   let hasMapCount = {};
 
   let start = 0;
-  for(let end=0;end<s.length;end++){
+  for(let end=0;end<str.length;end++){
     let endChar = str[end];
     if(hasMapCount[endChar] == null
       ? 1

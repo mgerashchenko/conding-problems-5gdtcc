@@ -30,28 +30,31 @@ const non_repeat_substring = function(str) {
 
 // better with indexes hash
 const non_repeat_substring = function(str) {
-  let count = 0;
+  // sliding window
+  // hashMap_index
+  // max_length
+  // count_row
 
-  // Use hash for indexes
-  let map = {},
-    start = 0;
-  // Use sliding window
-  for (let end = 0; end < str.length; end++) {
-    let end_char = str[end];
+  let max_length = 0;
 
-    // if the was visited, move start to the char
-    if (map[end_char] != null) {
-      // start could be ahead of old end indexes
-      start = Math.max(start, map[end_char] + 1);
+  let hashMap_index = {};
+
+  let start = 0;
+  for(let end=0;end<str.length;end++){
+    let char_end = str[end];
+
+    if(hashMap_index[char_end] > start) {
+      start = hashMap_index[char_end] + 1;
+      start++;
     }
 
-    map[end_char] = end;
-    // Use max count
-    count = Math.max(count, end - start + 1);
+    hashMap_index[char_end] = end;
+    max_length = Math.max(max_length, end - start + 1)
   }
+  
+  return max_length;
 
-  return count;
-}; // O(N)
+}; // O(N)// O(N)
 
 // def non_repeat_substring(str):
 //   count = 0
