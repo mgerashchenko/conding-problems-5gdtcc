@@ -3,50 +3,48 @@
 
 const search_triplets = function(arr) {
   // sort array
-  // third loop
-  // 2 pointers
-  // remove dublicates
+  // iterate third
+  // use 2 points on 2 sides
+  // iterate to have unique pointers
+  // return the triplets
 
-  let result = [];
-
+  let triplets = [];
   arr.sort((x, y) => x - y);
 
-  for (let i = 0; i < arr.length; i++) {
-    if(arr[i] === arr[i + 1]) continue;
+  for (let i = 0; i < arr.length - 2; i++) {
+    let num = arr[i];
 
-    let num = arr[i],
-        start = i + 1,
-        end = arr.length - 1;
+    // filter unique
+    if (i > 0 && arr[i] === arr[i - 1]) continue;
 
-    while(start < end) {
-        // console.log(i,num,start, arr[start], end, arr[end])        
+    let start = i + 1,
+      end = arr.length - 1;
+    while (start < end) {
+      let sum = num + arr[start] + arr[end];
 
-        let sum = num + arr[start] + arr[end];
-        if(sum === 0) {
-          result.push([num, arr[start], arr[end]]);
-          start++;
-          end--;
+      // base case
+      if (sum === 0) {
+        triplets.push([num, arr[start], arr[end]]);
 
-          while(start < end && arr[start] === arr[start-1]) {
-            start++;
-          };
+        // icrease
+        start++;
+        end--;
 
-          while(start < end && arr[end] === arr[end+1]) {
-            end--;
-          };
-        }
-
-        if(sum > 0) {
-          end--;
-        }
-
-        if(sum < 0) {
+        // filter unique, check prev
+        while (start < end && arr[start] === arr[start - 1]) {
           start++;
         }
+
+        while (start < end && arr[end] === arr[end + 1]) {
+          end--;
+        }
+      }
+      if (sum > 0) end--;
+      if (sum < 0) start++;
     }
   }
 
-  return result;
+  return triplets;
 }; // Sorting O(N logN) + third iterate O(N) * 2 pointers (N) === O(N2) + O(N2) === O(N2)
 
 // def search_triplets(arr):

@@ -48,4 +48,4 @@ const triplet_sum_close_to_target = function(arr, target_sum) {
   }
 
   return minSum === Infinity ? -1 : minSum;
-}; // Sort O(N logN) + O(N) * O(N) = O(n)
+}; // Sort O(N logN) + O(N) * O(N) = O(N2)
