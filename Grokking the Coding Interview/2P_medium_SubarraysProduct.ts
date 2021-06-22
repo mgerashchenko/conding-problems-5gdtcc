@@ -19,12 +19,12 @@ const find_subarrays = function(arr, target) {
   let arrs = [];
 
   let start = 0,
-      end = 0,
-      product = arr[end];
-  while(start <= end && end < arr.length) {
-    if(product < target){
+    end = 0,
+    product = arr[end];
+  while (start <= end && end < arr.length) {
+    if (product < target) {
       // All values between start and end arr valid
-      for(let i=start; i<=end; i++){
+      for (let i = start; i <= end; i++) {
         arrs.push(arr.slice(i, end + 1));
       }
       end++;
@@ -38,7 +38,6 @@ const find_subarrays = function(arr, target) {
 
   return arrs;
 };
-
 
 // def find_subarrays(arr, target):
 //   result = []
