@@ -10,21 +10,21 @@ const pair_with_targetsum = function(arr, target_sum) {
   // sort array
   // two pointers
 
-  let start = 0,
-    end = arr.length - 1;
+  let start = 0, 
+      end = arr.length-1;
 
-  while (start < end) {
+  while(start < end){
     // base case
     let sum = arr[start] + arr[end];
-    if (sum === target_sum) return [start, end];
+    if(sum === target_sum) return [start, end];
 
-    if (sum > target_sum) end--;
-    if (sum < target_sum) start++;
+    if(sum > target_sum) end--;
+    if(sum < target_sum) start++;
   }
 
   // conner case
-  return [-1, -1];
-}; // Time O(N) Space O(1)
+  return [0, 0];
+} // O(N) O()
 
 // def pair_with_targetsum(arr, target_sum):
 //   # sorted array

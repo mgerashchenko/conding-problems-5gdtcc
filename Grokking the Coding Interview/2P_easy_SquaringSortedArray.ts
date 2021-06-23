@@ -2,30 +2,27 @@
 // Squaring a Sorted Array
 
 const make_squares = function(arr) {
-  // two pointers from - and +
-  // fill array in reverse order
+  // sorted array
+  // use 2 pointers from 2 sides
+  // take the max value and put it at the end
+  // return new array
 
-  let resArr = [],
-    lastIndex = arr.length - 1;
+  let result = [];
 
-  let start = 0,
-    end = arr.length - 1;
+  let start = 0;
+  let end = arr.length - 1;
+
+  // <=, coz need every number
   while (start <= end) {
-    let startNum = Math.pow(arr[start], 2),
-      endNum = Math.pow(arr[end], 2);
-
-    if (startNum >= endNum) {
-      resArr[lastIndex] = startNum;
+    if (Math.pow(arr[start], 2) >= Math.pow(arr[end], 2)) {
+      result.unshift(Math.pow(arr[start], 2));
       start++;
+      continue;
     }
 
-    if (startNum < endNum) {
-      resArr[lastIndex] = endNum;
-      end--;
-    }
-
-    lastIndex--;
+    result.unshift(Math.pow(arr[end], 2));
+    end--;
   }
 
-  return resArr;
+  return result;
 }; // O(N) O(1)
