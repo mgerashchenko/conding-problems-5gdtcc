@@ -7,24 +7,30 @@
 // 2 Pointers O(N) O(1)
 
 const pair_with_targetsum = function(arr, target_sum) {
-  // sort array
-  // two pointers
+  // sorted array
+  // use 2 pointes 2 side
+  // if === return
+  // if < start ++
+  // i > end ++
 
-  let start = 0, 
-      end = arr.length-1;
-
-  while(start < end){
-    // base case
+  let start = 0;
+  let end = arr.length - 1;
+  // <, coz 2 numbers sum
+  while (start < end) {
     let sum = arr[start] + arr[end];
-    if(sum === target_sum) return [start, end];
+    if (sum === target_sum) return [start, end];
 
-    if(sum > target_sum) end--;
-    if(sum < target_sum) start++;
+    if (sum <= target_sum) {
+      start++;
+      continue;
+    }
+
+    end--;
   }
 
-  // conner case
-  return [0, 0];
-} // O(N) O()
+  // corner case
+  return [-1, -1];
+}; // O(n)
 
 // def pair_with_targetsum(arr, target_sum):
 //   # sorted array

@@ -3,18 +3,21 @@
 
 const make_squares = function(arr) {
   // sorted array
+  // -1^2 is === 1^2
+  // init new array
   // use 2 pointers from 2 sides
-  // take the max value and put it at the end
-  // return new array
+  // use bigger number
+  // add to the end of the arrray
 
+  // init array
   let result = [];
 
+  // use 2 pointers from 2 sides
   let start = 0;
   let end = arr.length - 1;
-
-  // <=, coz need every number
-  while (start <= end) {
-    if (Math.pow(arr[start], 2) >= Math.pow(arr[end], 2)) {
+  // coz need every number
+  while(start <= end) {
+    if(Math.pow(arr[start], 2) >= Math.pow(arr[end], 2)){
       result.unshift(Math.pow(arr[start], 2));
       start++;
       continue;
@@ -24,5 +27,7 @@ const make_squares = function(arr) {
     end--;
   }
 
+  // return result
   return result;
-}; // O(N) O(1)
+}; // O(N) O(N)
+

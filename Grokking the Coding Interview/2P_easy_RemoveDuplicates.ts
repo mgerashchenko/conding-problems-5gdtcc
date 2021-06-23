@@ -2,23 +2,24 @@
 // Remove Duplicates
 
 const remove_duplicates = function(arr) {
-  // use 2 ponters from 1 side
-  // start is 0
-  // end is 1
-  // if start !== end, start+1 === end
-  // in the first case 0+1 === 1
-  // return start
+  // sorted array
+  // use 2 pointes from 0 side
+  // start = 0
+  // iterate end from 1
+  // if start != end, end = start + 1
+  // with out dublicates when 0 != 1,  0 + 1 = 1
+  // return length, start + 1
 
   let start = 0;
-  for (let end = 1; end < arr.length; end++) {
-    if (arr[start] !== arr[end]) {
-      // assign to the next el
+  for (let end = 0; end < arr.length; end++) {
+    // base case
+    if (arr[start] != arr[end]) {
       arr[start + 1] = arr[end];
       start++;
     }
   }
 
-  // length === start + 1
+  // return length
   return start + 1;
 }; // O(n) O(1)
 
