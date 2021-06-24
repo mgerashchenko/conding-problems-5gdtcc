@@ -3,34 +3,34 @@
 
 const search_triplets = function(arr) {
   // sort array
-  // iterate third
-  // use 2 points on 2 sides
-  // iterate to have unique pointers
-  // return the triplets
+  // iterate array for 1st number
+  // and skip when i == i-1, use if in 1 loop
+  // use 2 pointers from 2 sides
+  // if cur sum === 0 add triplet
+  // and skip start when start === start-1, use while in 2 loops
+  // and end start when end = end + 1, use while in 2 loops
+  // return triplets array
 
-  let triplets = [];
   arr.sort((x, y) => x - y);
 
+  let result = [];
+
+  // -2 coz 2 pointers and < gives 1 === 3
   for (let i = 0; i < arr.length - 2; i++) {
-    let num = arr[i];
+    if (arr[i] === arr[i - 1]) continue;
 
-    // filter unique
-    if (i > 0 && arr[i] === arr[i - 1]) continue;
-
-    let start = i + 1,
-      end = arr.length - 1;
+    let start = i + 1;
+    let end = arr.length - 1;
+    // < because we need both numbers
     while (start < end) {
-      let sum = num + arr[start] + arr[end];
+      let sum = arr[i] + arr[start] + arr[end];
 
-      // base case
-      if (sum === 0) {
-        triplets.push([num, arr[start], arr[end]]);
-
-        // icrease
+      if (sum == 0) {
+        result.push([arr[i], arr[start], arr[end]]);
         start++;
         end--;
 
-        // filter unique, check prev
+        // skip dublicates only after we have added the triplet
         while (start < end && arr[start] === arr[start - 1]) {
           start++;
         }
@@ -39,12 +39,14 @@ const search_triplets = function(arr) {
           end--;
         }
       }
-      if (sum > 0) end--;
+
       if (sum < 0) start++;
+
+      if (sum > 0) end--;
     }
   }
 
-  return triplets;
+  return result;
 }; // Sorting O(N logN) + third iterate O(N) * 2 pointers (N) === O(N2) + O(N2) === O(N2)
 
 // def search_triplets(arr):

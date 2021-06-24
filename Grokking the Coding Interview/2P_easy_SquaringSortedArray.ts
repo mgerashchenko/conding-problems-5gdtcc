@@ -16,8 +16,8 @@ const make_squares = function(arr) {
   let start = 0;
   let end = arr.length - 1;
   // coz need every number
-  while(start <= end) {
-    if(Math.pow(arr[start], 2) >= Math.pow(arr[end], 2)){
+  while (start <= end) {
+    if (Math.pow(arr[start], 2) >= Math.pow(arr[end], 2)) {
       result.unshift(Math.pow(arr[start], 2));
       start++;
       continue;
@@ -30,4 +30,3 @@ const make_squares = function(arr) {
   // return result
   return result;
 }; // O(N) O(N)
-
