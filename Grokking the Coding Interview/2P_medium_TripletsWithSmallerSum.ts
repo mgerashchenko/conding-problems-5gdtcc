@@ -7,34 +7,58 @@
 // triplets count += end - start
 // count all triples between
 
-const triplet_with_smaller_sum = function(arr, target) {
-  // init triplets counter
+const triplet_sum_close_to_target = function(arr, target_sum) {
+  // sort arrya
+  // use infinity to find min diff
+  // iterate i
+  // use 2 pointers from 2 sides
+  // use Math abs tofind the min diff
+  // return mind diff
+
   // sort array
-  // iterate third
-  // use 2 pointers on 2 sites
-  // base case if sum < target add triplets between start and end
-  // return triplets counter
-
-  let tripletsCounter = 0;
-
   arr.sort((x, y) => x - y);
 
+  // init min diff
+  let minDiff = Infinity;
+  let minSum = Infinity;
+
+  // iterate i
   for (let i = 0; i < arr.length - 2; i++) {
-    let start = i + 1,
-      end = arr.length - 1;
+    // use 2 pointers from 2 sides
+    let start = i + 1;
+    let end = arr.length - 1;
     while (start < end) {
-      if (arr[i] + arr[start] + arr[end] < target) {
-        // count triplets that are between start and end
-        tripletsCounter += end - start;
-        start++;
-        continue;
+      let sum = arr[i] + arr[start] + arr[end];
+      let curMinDiff = Math.abs(target_sum - sum);
+
+      // base case
+      if (sum === target_sum) {
+        return sum;
       }
-      end--;
+
+      if (curMinDiff === minDiff) {
+        minSum = Math.min(sum, minSum);
+      }
+
+      // take slosest
+      if (curMinDiff < minDiff) {
+        minDiff = curMinDiff;
+        minSum = sum;
+      }
+
+      if (sum < target_sum) {
+        start++;
+      }
+
+      if (sum > target_sum) {
+        end--;
+      }
     }
   }
 
-  return tripletsCounter;
-};
+  // return min diff
+  return minSum;
+}; // O(N*logN) + O(N2) == O(N*logN + N2) == O(N2) Space O()
 
 // def triplet_with_smaller_sum(arr, target):
 //   # init counter
