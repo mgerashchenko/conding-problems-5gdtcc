@@ -2,52 +2,53 @@
 // Triplet Sum to Zero
 
 const search_triplets = function(arr) {
+  // init result
   // sort array
-  // iterate array for 1st number
-  // and skip when i == i-1, use if in 1 loop
-  // use 2 pointers from 2 sides
-  // if cur sum === 0 add triplet
-  // and skip start when start === start-1, use while in 2 loops
-  // and end start when end = end + 1, use while in 2 loops
-  // return triplets array
+  // iterate array
+  // skip with if i === i - 1 elements
+  // use 2 pointers from 2 sides, start = i +1, end = 0
+  // skip with while start === start - 1 elements
+  // return result
 
-  arr.sort((x, y) => x - y);
-
+  // init result
   let result = [];
 
-  // -2 coz 2 pointers and < gives 1 === 3
+  // sort array
+  arr.sort((x, y) => x - y);
+
+  // iterate i
   for (let i = 0; i < arr.length - 2; i++) {
-    if (arr[i] === arr[i - 1]) continue;
+    // skip dublicates i
+    if (i > 0 && arr[i - 1] === arr[i]) continue;
 
     let start = i + 1;
+    // !!! last index not the length
     let end = arr.length - 1;
-    // < because we need both numbers
+    // <, coz we need 2 numbers
     while (start < end) {
+      // base case
       let sum = arr[i] + arr[start] + arr[end];
-
-      if (sum == 0) {
+      if (sum === 0) {
         result.push([arr[i], arr[start], arr[end]]);
         start++;
         end--;
 
-        // skip dublicates only after we have added the triplet
-        while (start < end && arr[start] === arr[start - 1]) {
-          start++;
-        }
+        // // skip start dublicates
+        // while(start < end && arr[start-1] == arr[start]) start++
 
-        while (start < end && arr[end] === arr[end + 1]) {
-          end--;
-        }
+        // // skip end dublicates
+        // while(start < end && arr[end] == arr[end+1]) end--;
       }
 
-      if (sum < 0) start++;
-
+      // !!! i is negative end is always positive
       if (sum > 0) end--;
+      if (sum < 0) start++;
     }
   }
 
+  // return ressult
   return result;
-}; // Sorting O(N logN) + third iterate O(N) * 2 pointers (N) === O(N2) + O(N2) === O(N2)
+};// Sorting O(N logN) + third iterate O(N) * 2 pointers (N) === O(N2) + O(N2) === O(N2)
 
 // def search_triplets(arr):
 //   # sort array
