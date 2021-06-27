@@ -7,58 +7,41 @@
 // triplets count += end - start
 // count all triples between
 
-const triplet_sum_close_to_target = function(arr, target_sum) {
-  // sort arrya
-  // use infinity to find min diff
-  // iterate i
+const triplet_with_smaller_sum = function(arr, target) {
+  // init count as -1
+  // sort array
+  // iterare array i < arr.length -2
   // use 2 pointers from 2 sides
-  // use Math abs tofind the min diff
-  // return mind diff
+  // if sum < taget, increment count
+  // as dublicates are included we can just count right - left
+  // return count
+
+  let count = 0;
 
   // sort array
-  arr.sort((x, y) => x - y);
-
-  // init min diff
-  let minDiff = Infinity;
-  let minSum = Infinity;
+  arr.sort((x, y) => x - y); // !!! sort array
 
   // iterate i
   for (let i = 0; i < arr.length - 2; i++) {
-    // use 2 pointers from 2 sides
     let start = i + 1;
-    let end = arr.length - 1;
+    let end = arr.length - 1; // !!! end is index, not length
+    // iterate 2 pointers from 2 sides
     while (start < end) {
       let sum = arr[i] + arr[start] + arr[end];
-      let curMinDiff = Math.abs(target_sum - sum);
 
-      // base case
-      if (sum === target_sum) {
-        return sum;
-      }
-
-      if (curMinDiff === minDiff) {
-        minSum = Math.min(sum, minSum);
-      }
-
-      // take slosest
-      if (curMinDiff < minDiff) {
-        minDiff = curMinDiff;
-        minSum = sum;
-      }
-
-      if (sum < target_sum) {
+      if (sum < target) {
+        // for fixed i and start all indexes form (start to end] count be counted
+        count += end - start;
         start++;
+        continue;
       }
 
-      if (sum > target_sum) {
-        end--;
-      }
+      end--;  
     }
   }
 
-  // return min diff
-  return minSum;
-}; // O(N*logN) + O(N2) == O(N*logN + N2) == O(N2) Space O()
+  return count;
+}; // O(NlogN) O(N2)
 
 // def triplet_with_smaller_sum(arr, target):
 //   # init counter
