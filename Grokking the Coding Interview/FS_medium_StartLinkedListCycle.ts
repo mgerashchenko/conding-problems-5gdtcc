@@ -28,7 +28,7 @@ const find_cycle_start = function(head) {
     }
   }
 
-  // f cycle start
+  // find cycle start
   while (start != fast) {
     start = start.next;
     fast = fast.next;
