@@ -17,32 +17,31 @@ const search_triplets = function(arr) {
   let triplets = [];
 
   // sort array
-  arr.sort((x,y)=>x-y);
+  arr.sort((x, y) => x - y);
 
   // iterate array
-  for(let i=0;i<arr.length-2;i++){
-
+  for (let i = 0; i < arr.length - 2; i++) {
     // skip duplicate for 1rst num
-    if(i>0 && arr[i-1] == arr[i]) i++;
+    if (i > 0 && arr[i - 1] == arr[i]) i++;
 
     // use 2 pointers from 2 sides
-    let start = i+1;
-    let end = arr.length-1;
-    while(start < end) {
-      if(arr[i]+arr[start]+arr[end] === 0){
+    let start = i + 1;
+    let end = arr.length - 1;
+    while (start < end) {
+      if (arr[i] + arr[start] + arr[end] === 0) {
         // !!! push arr []
         triplets.push([arr[i], arr[start], arr[end]]);
         start++;
         end--;
 
         // skip duplicates for start
-        while(start < end && arr[start-1] == arr[start]) start++;
-        while(start < end && arr[end] == arr[end+1]) end--;
+        while (start < end && arr[start - 1] == arr[start]) start++;
+        while (start < end && arr[end] == arr[end + 1]) end--;
       }
 
       // !!! arr[i] is negative
-      if(arr[start]+arr[end] < -arr[i]) start++;
-      if(arr[start]+arr[end] > -arr[i]) end--;
+      if (arr[start] + arr[end] < -arr[i]) start++;
+      if (arr[start] + arr[end] > -arr[i]) end--;
     }
   }
 
