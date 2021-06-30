@@ -16,13 +16,14 @@ const is_palindromic_linked_list = function(head) {
   // compaire all elements
   // reverse the second half back
 
+  if (head == null && head.next == null) return true;
+
   let test = head;
   let arr = [];
   while (test != null) {
     arr.push(test.value);
     test = test.next;
   }
-  console.log('#1', arr);
 
   let isPalidrome = true;
 
@@ -59,14 +60,6 @@ const is_palindromic_linked_list = function(head) {
     prev.next = tmp;
   }
 
-  test = head;
-  arr = [];
-  while (test != null) {
-    arr.push(test.value);
-    test = test.next;
-  }
-  console.log('#2', arr);
-
   // iterate to check if palindrom
   let middle = prev.next;
   let start = head;
@@ -87,14 +80,6 @@ const is_palindromic_linked_list = function(head) {
     tmp.next = prev.next;
     prev.next = tmp;
   }
-
-  test = head;
-  arr = [];
-  while (test != null) {
-    arr.push(test.value);
-    test = test.next;
-  }
-  console.log('#3', arr);
 
   return isPalidrome;
 }; // O(N); O(1)
