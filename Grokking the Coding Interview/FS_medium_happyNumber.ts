@@ -28,7 +28,7 @@ const find_happy_number = function(num) {
   };
 
   // iterate fast and slow pointers
-  while(true) {
+  while (true) {
     slow = step(slow);
     fast = step(fast);
     fast = step(fast);
