@@ -7,37 +7,49 @@
 // Output: [0 0 1 1 2]
 
 const dutch_flag_sort = function(arr) {
-  // since there are only 3 numbers
-  // need to move only 2 of them
-  // 3rd could stay in place
-  // use 2 pointes from 2 sides
-  // if 0 replace with start, and move the start
-  // if 1 stay in place
-  // if 2 replace with end
-  // left part of curent index is already sorted
-  // replaced from the rigth should be checked
-
+  // sort array in place
   // use 2 pointers from 2 sides
+  // start and end
+  // there are only 3 positions
+  // if node == 0 do nothing
+  // if 1 replace to the start, and move to the start
+  // if 2 replace to the end, and move to the end
+  // sorting form the left to right
+  // when replace from the right, have to double check
+
+  // [1, 0, 2, 1, 0]
+  // [0  0. 1. 1. 2]
+  //              i
+  //     s
+  //           e
   let start = 0;
   let end = arr.length - 1;
   let i = 0;
-  // <= coz need to check every num
-  while (i <= end) {
+  // coz need to check last end
+  while(i <= end) {
     let num = arr[i];
+    
+    if(num === 1) {
+      i++;
+      continue;
+    };
 
-    // base case
-    if (num === 1) i++;
-    if (num === 0) {
+    if(num === 0) {
       [arr[start], arr[i]] = [arr[i], arr[start]];
       start++;
       i++;
+      continue;
     }
-    if (num === 2) {
+
+    if(num === 2) {
       [arr[i], arr[end]] = [arr[end], arr[i]];
       end--;
+      // i + 0, coz need to double check current position again
     }
   }
+
 }; // O(n) O(1)
+
 
 // def dutch_flag_sort(arr):
 // # there are 3 option 0 1 2

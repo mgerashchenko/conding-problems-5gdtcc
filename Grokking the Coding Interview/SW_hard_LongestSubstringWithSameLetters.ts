@@ -36,7 +36,7 @@ const length_of_longest_substring = function(arr, k) {
   } // O(N)
 
   return max;
-}; // O(N+N) O(1); O
+}; // O(N+N) O(1); O(1)
 
 // def length_of_longest_substring(str, k):
 //   # max length
