@@ -4,31 +4,39 @@
 // Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s, find the length of the longest contiguous subarray having all 1s.
 
 const length_of_longest_substring = function(arr, k) {
-  // max length, init 0
-  // sliding window
-  // count 1
-  // move start if length - 1's count > k limit
-  // udpate max with Math.max
+  // logest substring with 1, and k replacements
+  // init max length
+  // use 2 pointers from 1 side
+  // use sliding window
+  // count 0's
+  // if count > k, move start
   // return max length
+  //   k=3
+  //   0  1. 2. 3. 4. 5. 6. 7. 8. 9. 10
+  //   0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1]
+  //               s
+  //                                 e
+  // c 3
+  // m 9
 
-  let maxLength = 0;
+  let max = 0;
 
-  let countOne = 0;
+  let count = 0;
 
   let start = 0;
   for (let end = 0; end < arr.length; end++) {
-    if (arr[end] == 1) countOne++;
+    if (arr[end] === 0) count++;
 
-    while (end - start + 1 - countOne > k) {
-      if (arr[start] === 1) countOne--;
+    while (count > k) {
+      if (arr[start] === 0) count--;
       start++;
-    }
+    } // O(N)
 
-    maxLength = Math.max(maxLength, end - start + 1);
-  }
+    max = Math.max(max, end - start + 1);
+  } // O(N)
 
-  return maxLength;
-}; // O(N+N) O(1)
+  return max;
+}; // O(N+N) O(1); O
 
 // def length_of_longest_substring(str, k):
 //   # max length
