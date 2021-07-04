@@ -26,30 +26,28 @@ const dutch_flag_sort = function(arr) {
   let end = arr.length - 1;
   let i = 0;
   // coz need to check last end
-  while(i <= end) {
+  while (i <= end) {
     let num = arr[i];
-    
-    if(num === 1) {
+
+    if (num === 1) {
       i++;
       continue;
-    };
+    }
 
-    if(num === 0) {
+    if (num === 0) {
       [arr[start], arr[i]] = [arr[i], arr[start]];
       start++;
       i++;
       continue;
     }
 
-    if(num === 2) {
+    if (num === 2) {
       [arr[i], arr[end]] = [arr[end], arr[i]];
       end--;
       // i + 0, coz need to double check current position again
     }
   }
-
 }; // O(n) O(1)
-
 
 // def dutch_flag_sort(arr):
 // # there are 3 option 0 1 2
