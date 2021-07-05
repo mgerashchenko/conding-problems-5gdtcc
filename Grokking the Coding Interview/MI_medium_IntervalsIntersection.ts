@@ -1,6 +1,7 @@
 // https://www.educative.io/courses/grokking-the-coding-interview/JExVVqRAN9D
 // Intervals Intersection
 
+// Given two lists of intervals, find the intersection of these two lists. Each list consists of disjoint intervals sorted on their start time.
 
 const merge = function(intervals_a, intervals_b) {
   // init merged array

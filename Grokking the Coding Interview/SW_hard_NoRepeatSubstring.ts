@@ -4,12 +4,13 @@
 // Given a string, find the length of the longest substring, which has no repeating characters.
 
 const non_repeat_substring = function(str) {
-  // sliding window
-  // hashMap_index
-  // max_length, init 0
-  // update window start if el index >= start
-  // update length, with end - start + 1
-  // return max length
+  // iterate the array
+  // use 2 pointers from 1 side, like a sliding window
+  // use hashMap to remember the last index of the char
+  // if char is in the hashMap,
+  // update start with the current start or char index from the hashMap 
+  // update max length as end - start + 1
+  // return the max length
 
   let max_length = 0;
 
@@ -19,7 +20,7 @@ const non_repeat_substring = function(str) {
   for (let end = 0; end < str.length; end++) {
     let char_end = str[end];
 
-    if (hashMap_index[char_end] >= start) {
+    if (hashMap_index[char_end] > start) {
       start = hashMap_index[char_end] + 1;
     }
 
@@ -28,7 +29,7 @@ const non_repeat_substring = function(str) {
   }
 
   return max_length;
-}; // O(N)
+}; // O(N) - O(1) max space in the hashmap is 26 for English letters
 
 // def non_repeat_substring(str):
 //   count = 0

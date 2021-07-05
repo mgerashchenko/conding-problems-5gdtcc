@@ -6,10 +6,19 @@
 // Write a function to return the maximum number of fruits in both baskets.
 
 const fruits_into_baskets = function(fruits) {
-  // max count, init 0
-  // hash map count
-  // delete key when el count is 0
-  // return max
+  // find the longest subarray with not more than 2 distinct characters
+
+  // iterate the array
+  // use 2 pointers from 1 side as a sliding window
+  // use hashMap to count the chars
+  // update max length
+
+  // if end < arr.length, move end -> and
+  // if no char in hashMap set it to 0, then increment the char
+  // if char count is > than 2, move start ->
+  // and decrement char,  and delete char when char count is 0
+  // update max length
+  // return max length
 
   let hashMapCount = {},
     start = 0,

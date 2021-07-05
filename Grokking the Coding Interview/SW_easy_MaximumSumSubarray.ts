@@ -4,8 +4,14 @@
 // Given an array of positive numbers and a positive number ‘k,’ find the maximum sum of any contiguous subarray of size ‘k’.
 
 const max_sub_array_of_size_k = function(k, arr) {
-  // sliding window
-  // max
+  // init max value
+  // iterate arr
+  // and use sliding window
+  // with 2 pointers from one side to another
+  // the distance from start to end should be k
+  // slide this widnow throw the array
+  // update max value
+  // return max value
 
   let max = 0;
 
@@ -23,4 +29,4 @@ const max_sub_array_of_size_k = function(k, arr) {
   }
 
   return max;
-}; // O(N)
+}; // O(N) O(1)

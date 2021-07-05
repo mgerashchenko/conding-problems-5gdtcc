@@ -8,10 +8,16 @@
 // Inner `while` loop processes each element only once
 
 const smallest_subarray_with_given_sum = function(s, arr) {
-  // Sliding window
-  // Min length, init as Inifnity,
-  // Return return -1 if Inifnity
+  // find the length of the smallest subarray whose sum
+  // is >= equal s
+  // init sum
+  // init min length = Infinity
+  // iterate the array
+  // use 2 pointers from 1 side as a sliding window
+  // when sum >= s, update the min width
+  // return 0 if it is Infinity, or min length
 
+  // not 0, need to use Infinity for min value
   let minLength = Infinity;
 
   let start = 0,
