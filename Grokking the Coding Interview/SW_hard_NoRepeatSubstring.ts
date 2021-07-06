@@ -8,7 +8,7 @@ const non_repeat_substring = function(str) {
   // use 2 pointers from 1 side, like a sliding window
   // use hashMap to remember the last index of the char
   // if char is in the hashMap,
-  // update start with the current start or char index from the hashMap 
+  // update start with the current start or char index from the hashMap + 1
   // update max length as end - start + 1
   // return the max length
 

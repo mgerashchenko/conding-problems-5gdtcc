@@ -6,19 +6,18 @@
 // Write a function to return the maximum number of fruits in both baskets.
 
 const fruits_into_baskets = function(fruits) {
-  // find the longest subarray with not more than 2 distinct characters
+  // Find the longest substring with no repeating chars
 
   // iterate the array
-  // use 2 pointers from 1 side as a sliding window
-  // use hashMap to count the chars
-  // update max length
+  // use 2 pointers from 1 side, like a sliding window
+  // use hashMap to remember the last index of the char
+  // if char is in the hashMap of start > hashMapIndex
+  // update start with the current start and char index from the hashMap
+  // update max length as end - start + 1
+  // return the max length
 
-  // if end < arr.length, move end -> and
-  // if no char in hashMap set it to 0, then increment the char
-  // if char count is > than 2, move start ->
-  // and decrement char,  and delete char when char count is 0
-  // update max length
-  // return max length
+  // !!! Length is end - start + 1
+  // !!! move index to hashMap + 1 when start < hashMapIndex
 
   let hashMapCount = {},
     start = 0,
@@ -44,7 +43,7 @@ const fruits_into_baskets = function(fruits) {
   }
 
   return max_count;
-}; //  O(N+N)O(N+N)
+}; //  O(N+N)O(N+N): O(N)
 
 // def fruits_into_baskets(fruits):
 //   hashMap = {}
