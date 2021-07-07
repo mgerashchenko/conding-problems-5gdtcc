@@ -8,15 +8,15 @@
 const find_string_anagrams = function(str, pattern) {
   // find all anagrams of the pattern in the given string
   // anagram is pemutation with no repeated chars
-  
+
   // use 2 pointers from 1 side, as sliding window
   // use hashMap to count chars in pattern
   // use matchCounter to count matches
-   
+
   // init hashMap and count chars
   // iterate array
   // increment end
-  // if char in pattern, decrement char count 
+  // if char in pattern, decrement char count
   // and increment matchCount if hashMap count === 0
   // if end - start + 1 > pattern length
   // move start, if start char in pattern and === 0 decrement matchCount
@@ -31,34 +31,34 @@ const find_string_anagrams = function(str, pattern) {
   let matchCount = 0;
 
   // init hashMap
-  for(let i=0;i<pattern.length;i++) {
+  for (let i = 0; i < pattern.length; i++) {
     let char = pattern[i];
-    if(!(char in hashMap)) {
+    if (!(char in hashMap)) {
       hashMap[char] = 0;
     }
     hashMap[char]++;
   }
 
   let start = 0;
-  for(let end=0; end<str.length; end++){
+  for (let end = 0; end < str.length; end++) {
     let charEnd = str[end];
 
-    if(charEnd in hashMap) {
+    if (charEnd in hashMap) {
       hashMap[charEnd]--;
-      if(hashMap[charEnd]===0) matchCount++;
+      if (hashMap[charEnd] === 0) matchCount++;
     }
 
-    if(end - start + 1 > pattern.length) {
+    if (end - start + 1 > pattern.length) {
       let charStart = str[start];
-      if(hashMap[charStart] === 0) matchCount--;
-      if(charStart in hashMap) hashMap[charStart]++;
+      if (hashMap[charStart] === 0) matchCount--;
+      if (charStart in hashMap) hashMap[charStart]++;
       start++;
     }
 
-    if(matchCount === Object.keys(hashMap).length){
+    if (matchCount === Object.keys(hashMap).length) {
       result_indexes.push(start);
     }
   }
 
   return result_indexes;
-};
+}; // O(N+M) space O(M) if all distinct in the pattern, or O(N) if all chars are the same
