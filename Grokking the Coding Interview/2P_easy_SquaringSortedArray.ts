@@ -2,12 +2,19 @@
 // Squaring a Sorted Array
 
 const make_squares = function(arr) {
-  // sorted array
-  // -1^2 is === 1^2
-  // init new array
-  // use 2 pointers from 2 sides
-  // use bigger number
-  // add to the end of the arrray
+  // find all UNIQUE triplets in the arrya with sum === 0
+  //
+  // sort array
+  // iterate array
+  // skip i if i == i-1
+  // use 2 pointers form 2 sides
+  // while start < end not <= coz need 2 numbers
+  // add triplet if sum === 0
+  // skip start while start < end &&  start === start - 1, coz cycle
+  // skip end while end < end && end === end + 1, coz cycle
+  // increment start if i + start + end < 0
+  // decrement end if i + start + end > 0
+  // return triplets
 
   // init array
   let result = [];
