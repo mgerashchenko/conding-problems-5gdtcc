@@ -3,10 +3,10 @@
 //
 const merge = function(intervals) {
   // there are intervals merge them
-  // 
+  //
   // init merged = [];
   // sort intevals N Log N
-  // 
+  //
   // iterate intervals
   // start = i1.start
   // end = i2.start
@@ -15,20 +15,20 @@ const merge = function(intervals) {
   // if not update end = min(end, tmp.end)
   // return merged
 
-  if(intervals.length < 2) return intervals;
+  if (intervals.length < 2) return intervals;
 
   // init result
   let merged = [];
 
   // sort array
-  intervals.sort((x,y) => x.start - y.start);
+  intervals.sort((x, y) => x.start - y.start);
 
-  let {start, end} = intervals[0];
+  let { start, end } = intervals[0];
 
-  for(let i=1;i<intervals.length;i++) {
-    let {start:tmpStart, end:tmpEnd} = intervals[i];
+  for (let i = 1; i < intervals.length; i++) {
+    let { start: tmpStart, end: tmpEnd } = intervals[i];
 
-    if(end < tmpStart) {
+    if (end < tmpStart) {
       merged.push(new Interval(start, end));
       start = tmpStart;
       end = tmpEnd;

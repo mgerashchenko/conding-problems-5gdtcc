@@ -6,8 +6,8 @@
 // Every anagram is a permutation of a string. As we know, when we are not allowed to repeat characters while finding permutations of a string, we get N!N! permutations (or anagrams) of a string having NN characters. For example, here are the six anagrams of the string “abc”:
 
 const find_string_anagrams = function(str, pattern) {
-  // find all anagrams of the pattern in the given string
-  // anagram is pemutation with no repeated chars
+  // find all anograms of the pattern in the given string
+  // anagram is pemutation
 
   // use 2 pointers from 1 side, as sliding window
   // use hashMap to count chars in pattern
@@ -38,11 +38,11 @@ const find_string_anagrams = function(str, pattern) {
     }
     hashMap[char]++;
   }
+  console.log(hashMap);
 
   let start = 0;
   for (let end = 0; end < str.length; end++) {
     let charEnd = str[end];
-
     if (charEnd in hashMap) {
       hashMap[charEnd]--;
       if (hashMap[charEnd] === 0) matchCount++;
@@ -50,8 +50,10 @@ const find_string_anagrams = function(str, pattern) {
 
     if (end - start + 1 > pattern.length) {
       let charStart = str[start];
-      if (hashMap[charStart] === 0) matchCount--;
-      if (charStart in hashMap) hashMap[charStart]++;
+      if (charStart in hashMap) {
+        if (hashMap[charStart] === 0) matchCount--;
+        hashMap[charStart]++;
+      }
       start++;
     }
 
@@ -61,4 +63,4 @@ const find_string_anagrams = function(str, pattern) {
   }
 
   return result_indexes;
-}; // O(N+M) space O(M) if all distinct in the pattern, or O(N) if all chars are the same
+}; // O(N + P) space O(P), when hashMap will is full of disticnt pattern chars
